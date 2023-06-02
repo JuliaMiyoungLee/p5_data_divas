@@ -1,3 +1,6 @@
 juliaL, nicoleZ, annaF, abidT -- 2023-05-31 12:51
 - Submodule added
 - Design Doc production
+=================================================
+juliaL, nicoleZ, annaF, abidT -- 2023-06-02 06:00
+- Design Doc completion

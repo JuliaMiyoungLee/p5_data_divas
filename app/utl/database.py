@@ -1,37 +1,38 @@
 import sqlite3
-DB_FILE = "database.db"
+DB_FILE = "DB_FILE.db"
 
 def setup(): 
-    db = sqlite3.connect("DB_FILE")
+    db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
-    c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text);")
-    # c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, user_id integer, email text, weight integer,height integer,fitness_level integer);")
+    # c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text);")
+    c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, email text, weight integer,height integer,fitness_level integer);")
     print("table generated")
     db.commit()
     db.close() 
 
 def existence(username): 
-    db = sqlite3.connect("DB_FILE")
+    db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
     c.execute("SELECT * FROM users WHERE username=?", (username,))
     length = len(c.fetchall())
+    print("username_retrieved")
     if (length > 0): 
         return True 
     else: 
         return False 
     
 def register_me(username, password): 
-    db = sqlite3.connect("DB_FILE")
+    db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
 
     # insert the user into db 
-    c.execute("insert INTO users VALUES(?, ?)", [username, password])
+    c.execute("insert INTO users VALUES(?, ?, NULL, NULL, NULL, NULL)", [username, password,])
     db.commit()
     db.close() 
 
 
 def log_me_in(username, password): 
-    db = sqlite3.connect("DB_FILE")
+    db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
     #get password 
     info = c.execute("SELECT password FROM users WHERE username=?", (username,))

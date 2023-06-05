@@ -6,7 +6,7 @@ import utl.database as data_tables
 
 app = Flask(__name__)
 app.secret_key = 'imthreesecondsawayfromgivingup'
-db = sqlite3.connect("DB_FILE")
+db = sqlite3.connect("DB_FILE.db")
 c = db.cursor()
 
 data_tables.setup() 

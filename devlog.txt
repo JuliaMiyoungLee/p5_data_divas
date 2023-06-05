@@ -27,3 +27,9 @@ juliaL, nicoleZ, annaF, abidT -- 2023-06-02 06:00
 =================================================
 annaF -- 2023-06-05 00:40
 - setting up core app features (login, register, basic home) :)
+=================================================
+juliaL, nicoleZ, annaF, abidT -- 2023-06-05 03:48
+- Updated design doc:
+  - Clarified how to add foods and the creation of goals in abstract.
+  - Additional notes on how the quiz will function and quantify collected data.
+  - Note: There appears to be concerns about how many moving parts there are in our project and whether we will be capable of finishing in time. Will take this into account, but we would like to move forward with our goals for now.

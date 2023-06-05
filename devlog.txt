@@ -1,6 +1,29 @@
+Data Divas 
+Julia Lee 
+Anna Fang 
+Nicole Zhou 
+Abid Talukder 
+pd7
+---------------------
+p05: Truly Fit 
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_/   \_____\/ \_____\/ \_____\/ 
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 juliaL, nicoleZ, annaF, abidT -- 2023-05-31 12:51
 - Submodule added
 - Design Doc production
 =================================================
 juliaL, nicoleZ, annaF, abidT -- 2023-06-02 06:00
 - Design Doc completion
+> timestamps in text
+> the site would be more applicable/realistic if we develop an algorithm to calculate the quiz results 
+=================================================
+annaF -- 2023-06-05 00:40
+- setting up core app features (login, register, basic home) :)

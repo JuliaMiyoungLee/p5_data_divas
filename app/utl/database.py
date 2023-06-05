@@ -5,6 +5,7 @@ def setup():
     db = sqlite3.connect("DB_FILE")
     c = db.cursor() 
     c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text);")
+    # c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, user_id integer, email text, weight integer,height integer,fitness_level integer);")
     print("table generated")
     db.commit()
     db.close() 
@@ -45,6 +46,8 @@ def log_me_in(username, password):
         db.commit()
         db.close()
         return False 
+    
+    
 
 
 

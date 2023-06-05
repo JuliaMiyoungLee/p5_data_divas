@@ -1,3 +1,28 @@
 .center{
     text-align: center;
 }
+
+.justify{
+    text-align: justify;
+}
+
+.centerImage{
+    display: block;
+    margin-left:auto; 
+    margin-right:auto; 
+    max-width: 100%; 
+    max-height: 100%; 
+}
+
+.top_padded{
+    margin-top: 30px;
+}
+
+.padded{
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.align{
+    display: inline-block;
+}

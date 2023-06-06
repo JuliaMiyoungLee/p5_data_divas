@@ -9,14 +9,19 @@
     <div class = center> 
         <h2>login here :0</h2>
 	    <form action="/login" method="post">
+		<label for="username">Username</label>
+		<br> 
 		<input type="text" name="username"></input>
 		<br>
         <br>
+		<label for="password">Password</label>
+		<br> 
 		<input type="password" name="password"></input>
 		<br>
         <br>
 		<input type="submit">
 		</form>
+		<br> 
 		<div class="redirect">
 			Need to register? <br>
 		<button onclick="window.location.href='/register'">Register</button>

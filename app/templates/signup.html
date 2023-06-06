@@ -10,14 +10,19 @@
     <div class = center>
         <h2>register here :D</h2>
 	    <form action="/register" method="post">
-        <input type= "text" name="username"></input>
+        <label for="username">Username</label>
+        <br> 
+        <input type= "text" name="username" required minlength="3"></input>
         <br>
         <br>
-		<input type="password" name="password"></input>
+        <label for="password">Password</label>
+        <br> 
+		<input type= "text" name="password" required minlength="3"></input>
 		<br>
         <br>
 		<input type="submit">
 	    </form>
+        <br>
         <div class="register">
 			Already Registered? <br>
 		<button onclick="window.location.href='/login'">Log in</button>

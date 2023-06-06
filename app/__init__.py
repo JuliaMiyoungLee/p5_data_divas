@@ -4,7 +4,7 @@ import requests
 import utl.database as data_tables 
 import utl.quiz as quiz
 import flask
-# from api import * 
+from utl.api import * 
 
 app = Flask(__name__)
 app.secret_key = 'imthreesecondsawayfromgivingup'
@@ -52,6 +52,7 @@ def login():
 
 @app.route("/dashboard", methods=['GET', 'POST'])
 def dash(): 
+     tester_description(5) 
      return render_template("dashboard.html")
 
 @app.route("/profile")

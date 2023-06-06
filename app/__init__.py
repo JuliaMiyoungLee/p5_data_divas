@@ -4,7 +4,7 @@ import requests
 import utl.database as data_tables 
 import utl.quiz as quiz
 import flask
-from utl.api import * 
+import utl.api as api_funcs
 
 app = Flask(__name__)
 app.secret_key = 'imthreesecondsawayfromgivingup'
@@ -52,8 +52,12 @@ def login():
 
 @app.route("/dashboard", methods=['GET', 'POST'])
 def dash(): 
-     tester_description(5) 
-     return render_template("dashboard.html")
+    if flask.request.method == "POST":
+        if len(request.form["search"]) > 0:
+            return render_template("addFood.html", data=api_funcs.search(request.form["search"]), search=request.form["search"])
+    # tester_description(5) 
+    else:
+        return render_template("dashboard.html")
 
 @app.route("/profile")
 def profile(): 

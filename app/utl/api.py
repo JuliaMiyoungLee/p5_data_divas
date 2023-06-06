@@ -23,7 +23,7 @@ def search(foodName):
     foods = []
     for food in all:
         if food["dataType"] == "Branded":
-            foods.append({"id":food["fdcId"],"brand":food['brandOwner']})
+            foods.append({"id":food["fdcId"],"brand":food['brandOwner'], "description":food["description"]})
         else:
-            foods.append({"id":food["fdcId"],"brand":"none"})
+            foods.append({"id":food["fdcId"],"brand":"none", "description":food["description"]})
     return foods

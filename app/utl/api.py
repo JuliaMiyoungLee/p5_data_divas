@@ -15,4 +15,15 @@ def tester_description(x):
     # carbs = all[x]["foodNutrients"][2] 
     print(len(nutrition))
    
-
+def search(foodName):
+    k = "DEMO_KEY"
+    url = f"https://api.nal.usda.gov/fdc/v1/foods/list?api_key={k}&query={foodName}"
+    data = requests.get(url)
+    all = json.loads(data.text)
+    foods = []
+    for food in all:
+        if food["dataType"] == "Branded":
+            foods.append({"id":food["fdcId"],"brand":food['brandOwner']})
+        else:
+            foods.append({"id":food["fdcId"],"brand":"none"})
+    return foods

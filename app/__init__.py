@@ -53,6 +53,7 @@ def login():
 @app.route("/dashboard", methods=['GET', 'POST'])
 def dash(): 
     if flask.request.method == "POST":
+        # If user searches for something, returns page with list of foods from the search
         if len(request.form["search"]) > 0:
             return render_template("addFood.html", data=api_funcs.search(request.form["search"]), search=request.form["search"])
     # tester_description(5) 
@@ -69,6 +70,7 @@ def quiz_me():
     if flask.request.method == "GET":
         return render_template("quiz.html")
     else:
+        # Updates the users table with inputted info
         username = flask.session["username"]
         weight = str(request.form["weight"])
         height = str(request.form["height"])

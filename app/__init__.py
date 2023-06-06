@@ -3,6 +3,7 @@ import sqlite3
 import requests
 import utl.database as data_tables 
 import utl.quiz as quiz
+import flask
 # from api import * 
 
 app = Flask(__name__)
@@ -57,13 +58,18 @@ def dash():
 def profile(): 
     return render_template("profile.html")
 
-@app.route("/quiz")
+@app.route("/quiz", methods=['GET', 'POST'])
 def quiz_me(): 
     # if form submitted 
-    if(len(request.form)>0):
-        quiz.update(["weight", "fitness_level"], [request.form["Weight"], request.form["fitness_level"], session["username"]])
+    if flask.request.method == "GET":
+        return render_template("quiz.html")
+    else:
+        username = flask.session["username"]
+        weight = str(request.form["weight"])
+        fit_lvl = request.form["fitness_level"]
+        print(username)
+        data_tables.update_quiz(keys=["weight", "fitness_level"], values=[weight, fit_lvl], username=username)
         return redirect('/dashboard')
-    return render_template("quiz.html")
 
 @app.route("/logout")
 def logout(): 

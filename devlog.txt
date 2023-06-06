@@ -36,4 +36,4 @@ juliaL, nicoleZ, annaF, abidT -- 2023-06-05 03:48
 =================================================
 juliaL -- 2023-06-06 03:36
 - Updated the table with all 7 relevant values
-- Working on quiz page so it updates the user's information on the users table
+- Working on quiz page so it updates the user's information on the users table.

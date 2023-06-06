@@ -48,6 +48,19 @@ def log_me_in(username, password):
         db.close()
         return False 
     
+def update_quiz(keys, values, username):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = "UPDATE users SET "
+    for i in range(len(keys)):
+        query += keys[i] + " = " + values[i] + ", "
+    query = query[:-2]
+    query += " WHERE username = '" + username + "';"
+    print(query)
+    c.execute(query)
+    print("table updated")
+    db.commit() 
+    db.close() 
     
 
 

@@ -33,3 +33,7 @@ juliaL, nicoleZ, annaF, abidT -- 2023-06-05 03:48
   - Clarified how to add foods and the creation of goals in abstract.
   - Additional notes on how the quiz will function and quantify collected data.
   - Note: There appears to be concerns about how many moving parts there are in our project and whether we will be capable of finishing in time. Will take this into account, but we would like to move forward with our goals for now.
+=================================================
+juliaL -- 2023-06-06 03:36
+- Updated the table with all 7 relevant values
+- Working on quiz page so it updates the user's information on the users table.

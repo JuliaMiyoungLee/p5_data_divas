@@ -2,11 +2,13 @@ from flask import Flask, render_template, session, request, redirect
 import sqlite3
 import requests
 import utl.database as data_tables 
+import utl.quiz as quiz
+import flask
 # from api import * 
 
 app = Flask(__name__)
 app.secret_key = 'imthreesecondsawayfromgivingup'
-db = sqlite3.connect("DB_FILE")
+db = sqlite3.connect("DB_FILE.db")
 c = db.cursor()
 
 data_tables.setup() 
@@ -56,12 +58,19 @@ def dash():
 def profile(): 
     return render_template("profile.html")
 
-@app.route("/quiz")
+@app.route("/quiz", methods=['GET', 'POST'])
 def quiz_me(): 
     # if form submitted 
-    if(len(request.form)>0):
+    if flask.request.method == "GET":
+        return render_template("quiz.html")
+    else:
+        username = flask.session["username"]
+        weight = str(request.form["weight"])
+        height = str(request.form["height"])
+        fit_lvl = request.form["fitness_level"]
+        print(username)
+        data_tables.update_quiz(keys=["weight", "height", "fitness_level"], values=[weight, height, fit_lvl], username=username)
         return redirect('/dashboard')
-    return render_template("quiz.html")
 
 @app.route("/logout")
 def logout(): 

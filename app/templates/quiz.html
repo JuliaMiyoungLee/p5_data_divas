@@ -15,22 +15,21 @@
     </div>
     <!-- make the question form  -->
     <div class = center> 
-        <form action="/dashboard" method="post">
+        <form action="/quiz" method="post">
             <label for="First">First Name</label>
-            <input type="text">
+            <input type="text" name="First"></input>
             <br> 
             <label for="Last">Last Name</label>
-            <input type="text">
+            <input type="text" name="Last"></input>
             <br> 
-            <label for="Weight">Weight</label>
-            <input type="number"> 
+            <label for="weight">Weight</label>
+            <input type="number" name="weight"> </input>
             <br> 
-            <label for="Lifestyle">Select your Lifestyle</label>
-            <select name="lifestyles">
-                <option value ="Sedentary">Sendentary</option>
-                <option value ="Moderate">Moderately Active</option>
-                <option value ="Extreme">Extremely Active</option>
-            </select>
+            <label for="height">Height (in inches)</label>
+            <input type="number" name="height"> </input>
+            <br> 
+            <label for="fitness_level">Fitness Level 1-5</label>
+            <input type="number" name="fitness_level"> </input>
             <br> 
             <input type="submit">
         </form>

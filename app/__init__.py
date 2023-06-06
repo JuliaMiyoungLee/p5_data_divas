@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, request, redirect
 import sqlite3
 import requests
 import utl.database as data_tables 
+import utl.quiz as quiz
 # from api import * 
 
 app = Flask(__name__)
@@ -60,6 +61,7 @@ def profile():
 def quiz_me(): 
     # if form submitted 
     if(len(request.form)>0):
+        quiz.update(["weight", "fitness_level"], [request.form["Weight"], request.form["fitness_level"], session["username"]])
         return redirect('/dashboard')
     return render_template("quiz.html")
 

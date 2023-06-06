@@ -7,6 +7,7 @@ def update(keys, values, username):
         query += keys[i] + " = " + values[i] + ","
     query = query[:-2]
     query += " WHERE username = " + username + ";"
+    print(query)
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
     c.execute(query)

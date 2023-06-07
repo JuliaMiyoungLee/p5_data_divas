@@ -35,6 +35,7 @@ def search(foodName):
                 if food["foodNutrients"][index]["number"] == '208':
                     calories_per_100g= food["foodNutrients"][index]["amount"]
             foods.append({"id":food["fdcId"],"brand":None, "description":food["description"], "protein":protein, "fat":fat, "carbs":carbs, "calories per 100g": calories_per_100g})
+    print(foods)
     return foods
 
 def search_exercise(exerciseName):
@@ -44,17 +45,16 @@ def search_exercise(exerciseName):
     exercises = []
     names = [] 
     for exercise in all: 
-        # grabs the name and the calories burned per kg (have to convert into pounds ugh)
-        #dataset.append({exercises["Activity, Exercise or Sport (1 hour)"]: exercises["Calories per kg"]})
         # grabs just the names
         names.append(exercise["Activity, Exercise or Sport (1 hour)"])
-
-    # check if query is in database 
     for index in range(len(names)):
         if exerciseName in names[index]:
+            # grabs the name and the calories burned per kg (have to convert into pounds ugh)
             exercises.append({all[index]["Activity, Exercise or Sport (1 hour)"]: exercise["Calories per kg"]})
     print(exercises)
     return exercises 
+    # check if query is in database 
+    
     
 
     

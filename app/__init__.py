@@ -51,14 +51,14 @@ def dash():
         # If user searches for something, returns page with list of foods from the search
         # blank search or ' ' results in display of a selection from ALL items -> simply checking length causes case exeption errors
 
-        # first search 
+        # first search option 
         if ("food_search" in request.form):
             if(request.form["food_search"] != None):
                 return render_template("addFood.html", data=api_funcs.search(request.form["food_search"]), search=request.form["food_search"])
-        # second search 
+        # second search option
         if("exercise_search" in request.form): 
             if(request.form["exercise_search"] != None): 
-                return render_template("workouts.html")
+                return render_template("workouts.html", data=api_funcs.search_exercise(request.form["exercise_search"]), search=request.form["exercise_search"])
     else:
         return render_template("dashboard.html")
 

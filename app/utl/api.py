@@ -37,7 +37,7 @@ def search(foodName):
             foods.append({"id":food["fdcId"],"brand":None, "description":food["description"], "protein":protein, "fat":fat, "carbs":carbs, "calories per 100g": calories_per_100g})
     return foods
 
-def get_exerise():
+def search_exercise(exerciseName):
     url = "https://raw.githubusercontent.com/annafang30/exercise_stats/main/exercise_stats.json" 
     data = requests.get(url)
     all = json.loads(data.text)

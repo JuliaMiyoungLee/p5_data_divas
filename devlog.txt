@@ -37,8 +37,14 @@ juliaL, nicoleZ, annaF, abidT -- 2023-06-05 03:48
 juliaL -- 2023-06-06 03:36
 - Updated the table with all 7 relevant values
 - Working on quiz page so it updates the user's information on the users table.
+=================================================
 juliaL -- 2023-06-06 07:11
 - Can now search for foods using the search bar at the top right.
 - Cleaned up navbar.
+=================================================
 abidT
 - Dashboard set up.
+=================================================
+annaF -- 2023-06-06 23:11
+- pull macronutrients from database 
+- template clean up 

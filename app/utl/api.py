@@ -50,7 +50,7 @@ def search_exercise(exerciseName):
     for index in range(len(names)):
         if exerciseName in names[index]:
             # grabs the name and the calories burned per kg (have to convert into pounds ugh)
-            exercises.append({all[index]["Activity, Exercise or Sport (1 hour)"]: exercise["Calories per kg"]})
+            exercises.append({"exercise":all[index]["Activity, Exercise or Sport (1 hour)"],"calories":exercise["Calories per kg"]})
     print(exercises)
     return exercises 
     # check if query is in database 

@@ -13,6 +13,7 @@ c = db.cursor()
 
 data_tables.setup() 
 #c.execute("DROP TABLE IF EXISTS users")
+#c.execute("DROP TABLE IF EXISTS foods")
 
 @app.route("/",  methods=['GET', 'POST'])
 def intro():
@@ -20,9 +21,6 @@ def intro():
 
 @app.route("/register", methods=['GET', 'POST'])
 def registration(): 
-    # gotta make a log out button before implementing that whoops
-    # if(len(session) > 0):
-    #     return redirect("/dashboard")
     # register options
     if (len(request.form) > 0):
         if (data_tables.existence(request.form['username']) == False):
@@ -35,9 +33,6 @@ def registration():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login(): 
-    # gotta make a log out button before implementing that whoops
-    # if(len(session) > 0):
-    #     return redirect("/dashboard")
     if (len(request.form) > 0): 
         if (data_tables.existence(request.form['username']) == True):
             if(data_tables.log_me_in(request.form['username'], request.form['password']) == True):
@@ -54,7 +49,8 @@ def login():
 def dash(): 
     if flask.request.method == "POST":
         # If user searches for something, returns page with list of foods from the search
-        if len(request.form["search"]) > 0:
+        # blank search or ' ' results in display of a selection from ALL items -> simply checking length causes case exeption errors
+        if (request.form["search"]) != None:
             return render_template("addFood.html", data=api_funcs.search(request.form["search"]), search=request.form["search"])
     else:
         return render_template("dashboard.html")
@@ -83,7 +79,7 @@ def quiz_me():
 def logout(): 
     session.pop("username")
     session.pop("password")
-    return redirect("/login")
+    return redirect("/")
 
 if __name__ == "__main__": 
     app.debug = True

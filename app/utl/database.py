@@ -6,6 +6,7 @@ def setup():
     c = db.cursor() 
     # c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text);")
     c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, email text, weight integer,height integer,fitness_level integer);")
+    c.execute("CREATE TABLE IF NOT EXISTS foods(username text, timestamp text, name text, serving size text, calories text, ingredients text, brand text, carbs integer, fat integer, protein integer);")
     print("table generated")
     db.commit()
     db.close() 
@@ -61,8 +62,7 @@ def update_quiz(keys, values, username):
     print("table updated")
     db.commit() 
     db.close() 
-    
-
+        
 
 
 

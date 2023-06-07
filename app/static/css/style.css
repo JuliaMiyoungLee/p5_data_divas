@@ -18,6 +18,9 @@
     margin-top: 30px;
 }
 
+.left_padded{
+    margin-left: 10px;
+}
 .padded{
     margin-left: 60px;
     margin-right: 60px;

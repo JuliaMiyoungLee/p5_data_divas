@@ -47,4 +47,5 @@ abidT
 =================================================
 annaF -- 2023-06-06 23:11
 - pull macronutrients from database 
+- logout functionality 
 - template clean up 

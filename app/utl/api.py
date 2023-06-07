@@ -39,14 +39,22 @@ def search(foodName):
 
 def search_exercise(exerciseName):
     url = "https://raw.githubusercontent.com/annafang30/exercise_stats/main/exercise_stats.json" 
-    data = requests.get(url)
-    all = json.loads(data.text)
-    dataset = []
+    data2 = requests.get(url)
+    all = json.loads(data2.text)
+    exercises = []
     names = [] 
-    for exercises in all: 
-        dataset.append({exercises["Activity, Exercise or Sport (1 hour)"]: exercises["Calories per kg"]})
-        names.append(exercises["Activity, Exercise or Sport (1 hour)"])
-    return names 
+    for exercise in all: 
+        # grabs the name and the calories burned per kg (have to convert into pounds ugh)
+        #dataset.append({exercises["Activity, Exercise or Sport (1 hour)"]: exercises["Calories per kg"]})
+        # grabs just the names
+        names.append(exercise["Activity, Exercise or Sport (1 hour)"])
+
+    # check if query is in database 
+    for index in range(len(names)):
+        if exerciseName in names[index]:
+            exercises.append({all[index]["Activity, Exercise or Sport (1 hour)"]: exercise["Calories per kg"]})
+    print(exercises)
+    return exercises 
     
 
     

@@ -1,5 +1,5 @@
 from flask import Flask, session, render_template, request, redirect
-# import requests 
+import requests 
 import json 
 
 def search(foodName):

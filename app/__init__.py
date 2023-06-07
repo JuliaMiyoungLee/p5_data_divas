@@ -42,8 +42,10 @@ def login():
                     return redirect("/dashboard")
                 return redirect("/quiz")
             else:
-                return redirect("/login")
+                return render_template("login.html", ErrorMessage="Username does not match password")
                 # pop up? 
+        else:
+            return render_template("login.html", ErrorMessage="Username not found")
     # # render template
     return render_template("login.html")
 

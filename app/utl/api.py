@@ -53,7 +53,7 @@ def search_exercise(exerciseName):
         names.append(exercise["Activity, Exercise or Sport (1 hour)"])
     for index in range(len(names)):
         if query in names[index]:
-            # grabs the name and the calories burned per kg (have to convert into pounds ugh)
+            # grabs the name and the calories burned per kg (then converted to pounds and cut after 3rd decimal) 
             conversion = round(float(all[index]["Calories per kg"]) * 2.20462, 3)
             exercises.append({"exercise":all[index]["Activity, Exercise or Sport (1 hour)"],"calories":conversion})
         if query2 in names[index]:

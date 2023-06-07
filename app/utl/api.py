@@ -43,6 +43,7 @@ def search_exercise(exerciseName):
     data2 = requests.get(url)
     all = json.loads(data2.text)
     exercises = []
+    conversion = 0; 
     names = [] 
     for exercise in all: 
         # grabs just the names
@@ -50,7 +51,8 @@ def search_exercise(exerciseName):
     for index in range(len(names)):
         if exerciseName in names[index]:
             # grabs the name and the calories burned per kg (have to convert into pounds ugh)
-            exercises.append({"exercise":all[index]["Activity, Exercise or Sport (1 hour)"],"calories":exercise["Calories per kg"]})
+            conversion = round(float(all[index]["Calories per kg"]) * 2.20462, 3)
+            exercises.append({"exercise":all[index]["Activity, Exercise or Sport (1 hour)"],"calories":conversion})
     print(exercises)
     return exercises 
     # check if query is in database 

@@ -76,7 +76,7 @@ def quiz_me():
     else:
         # Updates the users table with inputted info
         username = flask.session["username"]
-        gender =  str(request.form["gender"])
+        gender = request.form["gender"]
         weight = str(request.form["weight"])
         height = str(request.form["height"])
         age = str(request.form["age"])

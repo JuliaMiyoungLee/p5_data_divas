@@ -54,8 +54,10 @@ def update_quiz(keys, values, username):
     c = db.cursor()
     query = "UPDATE users SET "
     for i in range(len(keys)):
-        print(keys)
-        query += keys[i] + " = " + values[i] + ", "
+        if(i==0):
+            query += keys[i] + " = '" + values[i] + "', "
+        else: 
+            query += keys[i] + " = " + values[i] + ", "
     query = query[:-2]
     query += " WHERE username = '" + username + "';"
     print(query)

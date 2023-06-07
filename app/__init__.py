@@ -70,9 +70,11 @@ def quiz_me():
         username = flask.session["username"]
         weight = str(request.form["weight"])
         height = str(request.form["height"])
+        age = str(request.form["age"])
         fit_lvl = request.form["fitness_level"]
         print(username)
-        data_tables.update_quiz(keys=["weight", "height", "fitness_level"], values=[weight, height, fit_lvl], username=username)
+        print(age) 
+        data_tables.update_quiz(keys=["weight", "height", "age","fitness_level"], values=[weight, height, age, fit_lvl], username=username)
         return redirect('/dashboard')
 
 @app.route("/logout")

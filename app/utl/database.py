@@ -5,7 +5,7 @@ def setup():
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
     # c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text);")
-    c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, email text, weight integer,height integer,age integer, fitness_level integer);")
+    c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, email text, weight integer,height integer, age integer, fitness_level integer);")
     c.execute("CREATE TABLE IF NOT EXISTS foods(username text, timestamp text, name text, serving size text, calories text, ingredients text, brand text, carbs integer, fat integer, protein integer);")
     print("table generated")
     db.commit()
@@ -27,7 +27,7 @@ def register_me(username, password):
     c = db.cursor() 
 
     # insert the user into db 
-    c.execute("insert INTO users VALUES(?, ?, NULL, NULL, NULL, NULL, NULL)", [username, password,])
+    c.execute("insert INTO users VALUES(?, ? ,NULL, NULL, NULL, NULL, NULL)", [username, password,])
     db.commit()
     db.close() 
 
@@ -54,6 +54,7 @@ def update_quiz(keys, values, username):
     c = db.cursor()
     query = "UPDATE users SET "
     for i in range(len(keys)):
+        print(keys)
         query += keys[i] + " = " + values[i] + ", "
     query = query[:-2]
     query += " WHERE username = '" + username + "';"

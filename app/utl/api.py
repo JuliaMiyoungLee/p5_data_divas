@@ -2,19 +2,6 @@ from flask import Flask, session, render_template, request, redirect
 import requests 
 import json 
 
-# pulling code from 20_restapi
-
-def tester_description(x):
-    k = "DEMO_KEY"
-    data = requests.get(url = f"https://api.nal.usda.gov/fdc/v1/foods/list?api_key={k}")
-    all = json.loads(data.text)
-    nutrition = all[1]["foodNutrients"][0]
-    print(nutrition)
-    # protein = all[x]["foodNutrients"][0] 
-    # fats = all[x]["foodNutrients"][1] 
-    # carbs = all[x]["foodNutrients"][2] 
-    print(len(nutrition))
-   
 def search(foodName):
     k = "DEMO_KEY"
     url = f"https://api.nal.usda.gov/fdc/v1/foods/list?api_key={k}&query={foodName}"
@@ -22,8 +9,25 @@ def search(foodName):
     all = json.loads(data.text)
     foods = []
     for food in all:
-        if food["dataType"] == "Branded":
-            foods.append({"id":food["fdcId"],"brand":food['brandOwner'], "description":food["description"]})
+        if food["dataType"] == "Branded": 
+            for index in range(len(food["foodNutrients"])):
+                if food["foodNutrients"][index]["number"] == '203':
+                    protein = food["foodNutrients"][index]["amount"]
+                if food["foodNutrients"][index]["number"] == '204':
+                    fat = food["foodNutrients"][index]["amount"]
+                if food["foodNutrients"][index]["number"] == '205':
+                    carbs = food["foodNutrients"][index]["amount"]
+                if food["foodNutrients"][index]["number"] == '208':
+                    calories_per_100g= food["foodNutrients"][index]["amount"]
+                    print(calories_per_100g)
+            foods.append({"id":food["fdcId"],"brand":food['brandOwner'], "description":food["description"], "protein":protein, "fat":fat, "carbs":carbs, "calories per 100g": calories_per_100g})
         else:
-            foods.append({"id":food["fdcId"],"brand":"none", "description":food["description"]})
+            for index in range(len(food["foodNutrients"])):
+                if food["foodNutrients"][index]["number"] == '203':
+                    protein = food["foodNutrients"][index]["amount"]
+                if food["foodNutrients"][index]["number"] == '204':
+                    fat = food["foodNutrients"][index]["amount"]
+                if food["foodNutrients"][index]["number"] == '205':
+                    carbs = food["foodNutrients"][index]["amount"]
+            foods.append({"id":food["fdcId"],"brand":None, "description":food["description"], "protein":protein, "fat":fat, "carbs":carbs})
     return foods

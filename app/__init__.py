@@ -56,12 +56,12 @@ def dash():
         # If user searches for something, returns page with list of foods from the search
         if len(request.form["search"]) > 0:
             return render_template("addFood.html", data=api_funcs.search(request.form["search"]), search=request.form["search"])
-    # tester_description(5) 
     else:
         return render_template("dashboard.html")
 
 @app.route("/profile")
 def profile(): 
+    print(api_funcs.tester_description(4))
     return render_template("profile.html")
 
 @app.route("/quiz", methods=['GET', 'POST'])

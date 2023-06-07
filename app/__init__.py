@@ -38,7 +38,7 @@ def login():
             if(data_tables.log_me_in(request.form['username'], request.form['password']) == True):
                 session["username"] = request.form["username"] 
                 session["password"] = request.form["password"]
-                if data_tables.get_user_gen(session["username"]) > 0:
+                if data_tables.quizzed(session["username"]) > 0:
                     return redirect("/dashboard")
                 return redirect("/quiz")
             else:

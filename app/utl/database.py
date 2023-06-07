@@ -65,7 +65,7 @@ def update_quiz(keys, values, username):
     db.close() 
         
 
-def get_user_gen(username):
+def quizzed(username):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
     # Build query

@@ -5,7 +5,7 @@ def setup():
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
     # c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text);")
-    c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, email text, weight integer,height integer, age integer, fitness_level integer);")
+    c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, gender text, weight integer,height integer, age integer, fitness_level integer);")
     c.execute("CREATE TABLE IF NOT EXISTS foods(username text, timestamp text, name text, serving size text, calories text, ingredients text, brand text, carbs integer, fat integer, protein integer);")
     print("table generated")
     db.commit()

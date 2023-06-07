@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect 
 import sqlite3
-import requests
+# import requests
 import utl.database as data_tables 
 import utl.quiz as quiz
 import flask

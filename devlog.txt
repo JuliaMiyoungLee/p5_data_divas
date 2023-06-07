@@ -49,3 +49,9 @@ annaF -- 2023-06-06 23:11
 - pull macronutrients from database 
 - logout functionality 
 - template clean up 
+=================================================
+annaF -- 2023-06-07 14:42
+- pull worout data from database 
+- format workouts.html 
+- fix gender issue with Julia 
+help me there is so much SMOG

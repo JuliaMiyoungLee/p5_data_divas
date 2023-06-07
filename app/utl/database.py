@@ -65,8 +65,18 @@ def update_quiz(keys, values, username):
     db.close() 
         
 
-
-
-
-
+def get_user_gen(username):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    # Build query
+    query = "SELECT * FROM users WHERE username = '" + username + "'"
+    print(query)
+    info = c.execute(query)
+    results = info.fetchall()
+    gender = results[0][2]
+    db.commit() 
+    db.close() 
+    if gender == None:
+        return 0
+    return 1
 

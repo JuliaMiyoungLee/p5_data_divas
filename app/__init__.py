@@ -50,14 +50,20 @@ def dash():
     if flask.request.method == "POST":
         # If user searches for something, returns page with list of foods from the search
         # blank search or ' ' results in display of a selection from ALL items -> simply checking length causes case exeption errors
-        if (request.form["search"]) != None:
-            return render_template("addFood.html", data=api_funcs.search(request.form["search"]), search=request.form["search"])
+
+        # first search 
+        if ("food_search" in request.form):
+            if(request.form["food_search"] != None):
+                return render_template("addFood.html", data=api_funcs.search(request.form["food_search"]), search=request.form["food_search"])
+        # second search 
+        if("exercise_search" in request.form): 
+            if(request.form["exercise_search"] != None): 
+                return render_template("workouts.html")
     else:
         return render_template("dashboard.html")
 
 @app.route("/profile")
 def profile(): 
-    print(api_funcs.tester_description(4))
     return render_template("profile.html")
 
 @app.route("/quiz", methods=['GET', 'POST'])

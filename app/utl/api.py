@@ -36,3 +36,17 @@ def search(foodName):
                     calories_per_100g= food["foodNutrients"][index]["amount"]
             foods.append({"id":food["fdcId"],"brand":None, "description":food["description"], "protein":protein, "fat":fat, "carbs":carbs, "calories per 100g": calories_per_100g})
     return foods
+
+def get_exerise():
+    url = "https://raw.githubusercontent.com/annafang30/exercise_stats/main/exercise_stats.json" 
+    data = requests.get(url)
+    all = json.loads(data.text)
+    dataset = []
+    names = [] 
+    for exercises in all: 
+        dataset.append({exercises["Activity, Exercise or Sport (1 hour)"]: exercises["Calories per kg"]})
+        names.append(exercises["Activity, Exercise or Sport (1 hour)"])
+    return names 
+    
+
+    

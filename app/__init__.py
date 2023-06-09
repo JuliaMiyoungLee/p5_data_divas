@@ -2,7 +2,6 @@ from flask import Flask, render_template, session, request, redirect
 import sqlite3
 import requests
 import utl.database as data_tables 
-import utl.quiz as quiz
 import flask
 import utl.api as api_funcs
 from datetime import date as dates

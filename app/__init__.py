@@ -64,7 +64,12 @@ def dash():
             if(request.form["exercise_search"] != None): 
                 return render_template("workouts.html", data=api_funcs.search_exercise(request.form["exercise_search"]), search=request.form["exercise_search"])
     else:
-        return render_template("dashboard.html")
+        user = session["username"]
+        breakfasts = data_tables.get_breakfast(user)
+        lunchs = data_tables.get_lunch(user)
+        dinners = data_tables.get_dinner(user)
+        snacks = data_tables.get_snack(user)
+        return render_template("dashboard.html", breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackDinner=snacks)
 
 @app.route("/profile")
 def profile(): 
@@ -99,9 +104,16 @@ def addFood():
         fat = request.form["fat"]
         carbs = request.form["carbs"]
         calories = request.form["calories"]
-        data_tables.add_food([user, name, brand, id, protein, fat, carbs, calories])
-        return render_template("dashboard.html")
+        type = request.form["type"]
+        data_tables.add_food([user, name, brand, id, protein, fat, carbs, calories, type])
+        return redirect("/dashboard")
     return render_template("addFood.html")
+
+@app.route("/delete", methods=["POST"])
+def delete_food():
+    foodId = request.form["id"]
+    data_tables.delete_food(session["username"], foodId)
+    return redirect("/dashboard")
 
 @app.route("/logout")
 def logout(): 

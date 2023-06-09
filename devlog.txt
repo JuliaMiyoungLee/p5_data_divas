@@ -60,4 +60,5 @@ juliaL -- 2023-06-09 05:14
 Just remembered I should update this
 - Linked html to dashboard so you can now add and delete foods
 - Added feature to change date and go backward
+- Now you can visit the future, too!!!
 send help I've been doing this since like 12AM...

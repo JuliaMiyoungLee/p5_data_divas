@@ -52,6 +52,11 @@ def login():
     # # render template
     return render_template("login.html")
 
+@app.route("/home")
+def home():
+    date = dates.today().strftime("%m-%d-%Y")
+    return redirect(f"/dashboard/{date}")
+
 @app.route("/dashboard/<date>", methods=['GET', 'POST'])
 def dash(date): 
     if flask.request.method == "POST":

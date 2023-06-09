@@ -87,6 +87,21 @@ def quiz_me():
         print(goal)
         data_tables.update_quiz(keys=["gender", "goal", "weight", "height", "age","fitness_level"], values=[gender, goal, weight, height, age, fit_lvl], username=username)
         return redirect('/dashboard')
+    
+@app.route("/addFoods", methods=["GET", "POST"])
+def addFood():
+    if flask.request.method == "POST":
+        user = flask.session["username"]
+        name = request.form["name"]
+        brand = request.form["brand"]
+        id = request.form["id"]
+        protein = request.form["protein"]
+        fat = request.form["fat"]
+        carbs = request.form["carbs"]
+        calories = request.form["calories"]
+        data_tables.add_food([user, name, brand, id, protein, fat, carbs, calories])
+        return render_template("dashboard.html")
+    return render_template("addFood.html")
 
 @app.route("/logout")
 def logout(): 

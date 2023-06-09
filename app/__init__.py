@@ -5,6 +5,8 @@ import utl.database as data_tables
 import utl.quiz as quiz
 import flask
 import utl.api as api_funcs
+from datetime import date as dates
+import utl.calendar as calendify
 
 app = Flask(__name__)
 app.secret_key = 'imthreesecondsawayfromgivingup'
@@ -49,8 +51,8 @@ def login():
     # # render template
     return render_template("login.html")
 
-@app.route("/dashboard", methods=['GET', 'POST'])
-def dash(): 
+@app.route("/dashboard/<date>", methods=['GET', 'POST'])
+def dash(date): 
     if flask.request.method == "POST":
         # If user searches for something, returns page with list of foods from the search
         # blank search or ' ' results in display of a selection from ALL items -> simply checking length causes case exeption errors
@@ -64,12 +66,14 @@ def dash():
             if(request.form["exercise_search"] != None): 
                 return render_template("workouts.html", data=api_funcs.search_exercise(request.form["exercise_search"]), search=request.form["exercise_search"])
     else:
+        currentString = dates.today().strftime("%B %d, %Y")
+        currentEz = dates.today().strftime("%m-%d-%Y")
         user = session["username"]
-        breakfasts = data_tables.get_breakfast(user)
-        lunchs = data_tables.get_lunch(user)
-        dinners = data_tables.get_dinner(user)
-        snacks = data_tables.get_snack(user)
-        return render_template("dashboard.html", breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackDinner=snacks)
+        breakfasts = data_tables.get_breakfast(user, currentEz)
+        lunchs = data_tables.get_lunch(user, currentEz)
+        dinners = data_tables.get_dinner(user, currentEz)
+        snacks = data_tables.get_snack(user, currentEz)
+        return render_template("dashboard.html", breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackDinner=snacks, date=currentString, date1=currentEz)
 
 @app.route("/profile")
 def profile(): 
@@ -89,9 +93,10 @@ def quiz_me():
         height = str(request.form["height"])
         age = str(request.form["age"])
         fit_lvl = request.form["fitness_level"]
+        today = dates.today().strftime("%m-%d-%Y")
         print(goal)
         data_tables.update_quiz(keys=["gender", "goal", "weight", "height", "age","fitness_level"], values=[gender, goal, weight, height, age, fit_lvl], username=username)
-        return redirect('/dashboard')
+        return redirect(f'/dashboard/{today}')
     
 @app.route("/addFoods", methods=["GET", "POST"])
 def addFood():
@@ -105,16 +110,23 @@ def addFood():
         carbs = request.form["carbs"]
         calories = request.form["calories"]
         foodType = request.form["foodType"]
+        today = dates.today().strftime("%m-%d-%Y")
         data_tables.add_food([user, name, brand, id, protein, fat, carbs, calories, foodType])
-        return redirect("/dashboard")
+        return redirect(f"/dashboard/{today}")
     return render_template("addFood.html")
 
 @app.route("/delete", methods=["POST"])
 def delete_food():
+    today = dates.today().strftime("%m-%d-%Y")
     foodId = request.form["id"]
     foodType = request.form["foodType"]
-    data_tables.delete_food(session["username"], foodId, foodType)
-    return redirect("/dashboard")
+    data_tables.delete_food(session["username"], foodId, foodType, date)
+    return redirect(f"/dashboard/{today}")
+
+@app.route("/goBack/<date>")
+def go_back(date):
+    newDate = calendify.get_before(date)
+    return redirect(f"/dashboard/{newDate}")
 
 @app.route("/logout")
 def logout(): 

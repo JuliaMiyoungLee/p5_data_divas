@@ -91,55 +91,55 @@ def add_food(values):
             query += f"'{value}', "
         else:
             query += f"{value}, "
-    query += " '" + date.today().strftime("%b-%d-%Y") + "')"
+    query += " '" + date.today().strftime("%m-%d-%Y") + "')"
     c.execute(query)
     db.commit() 
     db.close()
 
-def get_breakfast(username):
+def get_breakfast(username, date):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = "SELECT * FROM foods WHERE username = '" + username + "' AND foodType = 'breakfast'"
+    query = f"SELECT * FROM foods WHERE username = '{username}' AND foodType = 'breakfast' AND timestamp = '{date}'"
     info = c.execute(query)
     foods = info.fetchall()
     db.commit() 
     db.close()
     return foods
 
-def get_lunch(username):
+def get_lunch(username, date):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = "SELECT * FROM foods WHERE username = '" + username + "' AND foodType = 'lunch'"
+    query = f"SELECT * FROM foods WHERE username = '{username}' AND foodType = 'lunch' AND timestamp = '{date}'"
     info = c.execute(query)
     foods = info.fetchall()
     db.commit() 
     db.close()
     return foods
 
-def get_dinner(username):
+def get_dinner(username, date):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = "SELECT * FROM foods WHERE username = '" + username + "' AND foodType = 'dinner'"
+    query = f"SELECT * FROM foods WHERE username = '{username}' AND foodType = 'dinner' AND timestamp = '{date}'"
     info = c.execute(query)
     foods = info.fetchall()
     db.commit() 
     db.close()
     return foods
 
-def get_snack(username):
+def get_snack(username, date):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = "SELECT * FROM foods WHERE username = '" + username + "' AND foodType = 'snack'"
+    query = f"SELECT * FROM foods WHERE username = '{username}' AND foodType = 'snack' AND timestamp = '{date}'"
     info = c.execute(query)
     foods = info.fetchall()
     db.commit() 
     db.close()
     return foods
 
-def delete_food(username, foodId, foodType):
+def delete_food(username, foodId, foodType, date):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = f"DELETE FROM foods WHERE username = '{username}' AND id = {foodId} AND foodType = '{foodType}'"
+    query = f"DELETE FROM foods WHERE username = '{username}' AND id = {foodId} AND foodType = '{foodType}' AND timestamp = '{date}'"
     print(query)
     c.execute(query)
     db.commit() 

@@ -61,11 +61,11 @@ def dash(date):
         # first search option 
         if ("food_search" in request.form):
             if(request.form["food_search"] != None):
-                return render_template("addFood.html", data=api_funcs.search(request.form["food_search"]), search=request.form["food_search"])
+                return render_template("addFood.html", data=api_funcs.search(request.form["food_search"]), search=request.form["food_search"], date1=date)
         # second search option
         if("exercise_search" in request.form): 
             if(request.form["exercise_search"] != None): 
-                return render_template("workouts.html", data=api_funcs.search_exercise(request.form["exercise_search"]), search=request.form["exercise_search"])
+                return render_template("workouts.html", data=api_funcs.search_exercise(request.form["exercise_search"]), search=request.form["exercise_search"], date1=date)
     else:
         dateDisplay = calendify.get_date_fancy(date)
         user = session["username"]
@@ -100,6 +100,7 @@ def quiz_me():
     
 @app.route("/addFoods", methods=["GET", "POST"])
 def addFood():
+    today = dates.today().strftime("%m-%d-%Y")
     if flask.request.method == "POST":
         user = flask.session["username"]
         name = request.form["name"]
@@ -110,7 +111,6 @@ def addFood():
         carbs = request.form["carbs"]
         calories = request.form["calories"]
         foodType = request.form["foodType"]
-        today = dates.today().strftime("%m-%d-%Y")
         data_tables.add_food([user, name, brand, id, protein, fat, carbs, calories, foodType])
         return redirect(f"/dashboard/{today}")
     return render_template("addFood.html")
@@ -126,6 +126,11 @@ def delete_food():
 @app.route("/goBack/<date>")
 def go_back(date):
     newDate = calendify.get_before(date)
+    return redirect(f"/dashboard/{newDate}")
+
+@app.route("/goForward/<date>")
+def go_forward(date):
+    newDate = calendify.get_after(date)
     return redirect(f"/dashboard/{newDate}")
 
 @app.route("/logout")

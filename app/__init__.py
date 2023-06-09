@@ -41,7 +41,8 @@ def login():
                 session["username"] = request.form["username"] 
                 session["password"] = request.form["password"]
                 if data_tables.quizzed(session["username"]) > 0:
-                    return redirect("/dashboard")
+                    today = dates.today().strftime("%m-%d-%Y")
+                    return redirect(f"/dashboard/{today}")
                 return redirect("/quiz")
             else:
                 return render_template("login.html", ErrorMessage="Username does not match password")
@@ -66,14 +67,13 @@ def dash(date):
             if(request.form["exercise_search"] != None): 
                 return render_template("workouts.html", data=api_funcs.search_exercise(request.form["exercise_search"]), search=request.form["exercise_search"])
     else:
-        currentString = dates.today().strftime("%B %d, %Y")
-        currentEz = dates.today().strftime("%m-%d-%Y")
+        dateDisplay = calendify.get_date_fancy(date)
         user = session["username"]
-        breakfasts = data_tables.get_breakfast(user, currentEz)
-        lunchs = data_tables.get_lunch(user, currentEz)
-        dinners = data_tables.get_dinner(user, currentEz)
-        snacks = data_tables.get_snack(user, currentEz)
-        return render_template("dashboard.html", breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackDinner=snacks, date=currentString, date1=currentEz)
+        breakfasts = data_tables.get_breakfast(user, date)
+        lunchs = data_tables.get_lunch(user, date)
+        dinners = data_tables.get_dinner(user, date)
+        snacks = data_tables.get_snack(user, date)
+        return render_template("dashboard.html", breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackDinner=snacks, date=dateDisplay, date1=date)
 
 @app.route("/profile")
 def profile(): 
@@ -120,7 +120,7 @@ def delete_food():
     today = dates.today().strftime("%m-%d-%Y")
     foodId = request.form["id"]
     foodType = request.form["foodType"]
-    data_tables.delete_food(session["username"], foodId, foodType, date)
+    data_tables.delete_food(session["username"], foodId, foodType, today)
     return redirect(f"/dashboard/{today}")
 
 @app.route("/goBack/<date>")

@@ -13,6 +13,12 @@ def get_before(current):
         # If the previous month has 30 days
         else:
             return str(int(current[:2]-1)) + "-30-" + current[6:]
+    elif int(current[3:5]) < 10:
+        return current[:3] + "0" + str(int(current[3:5])-1) + "-" + current[6:]
     else:
         return current[:3] + str(int(current[3:5])-1) + "-" + current[6:]
 
+def get_date_fancy(date):
+    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    return str(months[int(date[:2])]) + date[2:]
+   

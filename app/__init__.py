@@ -104,15 +104,16 @@ def addFood():
         fat = request.form["fat"]
         carbs = request.form["carbs"]
         calories = request.form["calories"]
-        type = request.form["type"]
-        data_tables.add_food([user, name, brand, id, protein, fat, carbs, calories, type])
+        foodType = request.form["foodType"]
+        data_tables.add_food([user, name, brand, id, protein, fat, carbs, calories, foodType])
         return redirect("/dashboard")
     return render_template("addFood.html")
 
 @app.route("/delete", methods=["POST"])
 def delete_food():
     foodId = request.form["id"]
-    data_tables.delete_food(session["username"], foodId)
+    foodType = request.form["foodType"]
+    data_tables.delete_food(session["username"], foodId, foodType)
     return redirect("/dashboard")
 
 @app.route("/logout")

@@ -8,7 +8,7 @@ def setup():
     c = db.cursor() 
     # c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text);")
     c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, gender text, goal text, weight integer,height integer, age integer, fitness_level integer);")
-    c.execute("CREATE TABLE IF NOT EXISTS foods(username text, name text, brand text, id integer, protein text, fat text, carbs text, calories integer, type text, timestamp text);")
+    c.execute("CREATE TABLE IF NOT EXISTS foods(username text, name text, brand text, id integer, protein text, fat text, carbs text, calories integer, foodType text, timestamp text);")
     db.commit()
     db.close() 
 
@@ -85,7 +85,7 @@ def add_food(values):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
     query = "INSERT INTO foods ("
-    query += "username, name, brand, id, protein, fat, carbs, calories, type, timestamp) VALUES ("
+    query += "username, name, brand, id, protein, fat, carbs, calories, foodType, timestamp) VALUES ("
     for value in values:
         if type(value) is str:
             query += f"'{value}', "
@@ -99,7 +99,7 @@ def add_food(values):
 def get_breakfast(username):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = "SELECT * FROM foods WHERE username = '" + username + "' AND type = 'breakfast'"
+    query = "SELECT * FROM foods WHERE username = '" + username + "' AND foodType = 'breakfast'"
     info = c.execute(query)
     foods = info.fetchall()
     db.commit() 
@@ -109,7 +109,7 @@ def get_breakfast(username):
 def get_lunch(username):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = "SELECT * FROM foods WHERE username = '" + username + "' AND type = 'lunch'"
+    query = "SELECT * FROM foods WHERE username = '" + username + "' AND foodType = 'lunch'"
     info = c.execute(query)
     foods = info.fetchall()
     db.commit() 
@@ -119,7 +119,7 @@ def get_lunch(username):
 def get_dinner(username):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = "SELECT * FROM foods WHERE username = '" + username + "' AND type = 'dinner'"
+    query = "SELECT * FROM foods WHERE username = '" + username + "' AND foodType = 'dinner'"
     info = c.execute(query)
     foods = info.fetchall()
     db.commit() 
@@ -129,17 +129,17 @@ def get_dinner(username):
 def get_snack(username):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = "SELECT * FROM foods WHERE username = '" + username + "' AND type = 'snack'"
+    query = "SELECT * FROM foods WHERE username = '" + username + "' AND foodType = 'snack'"
     info = c.execute(query)
     foods = info.fetchall()
     db.commit() 
     db.close()
     return foods
 
-def delete_food(username, foodId):
+def delete_food(username, foodId, foodType):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = f"DELETE FROM foods WHERE username = '{username}' AND id = {foodId}"
+    query = f"DELETE FROM foods WHERE username = '{username}' AND id = {foodId} AND foodType = '{foodType}'"
     print(query)
     c.execute(query)
     db.commit() 

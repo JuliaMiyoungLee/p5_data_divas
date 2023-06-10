@@ -11,3 +11,22 @@
 # Active (exercise 6–7 days/week): AMR = BMR x 1.725
 # Very active (hard exercise 6–7 days/week): AMR = BMR x 1.9
 
+def bmr(gender, weight, height, age):
+    if gender == "female":
+        num = 655.1 + (9.563* weight) + (1.850 * height) - (4.676 * age)
+    elif gender == "male":
+        num = 66.47 + (13.75 * weight) + (5.003 * height) - (6.775 * age)
+    return num
+
+def amr(fitness_level, bmr_value):
+    if fitness_level == 1:
+        num = bmr_value * 1.2
+    elif fitness_level == 2:
+        num = bmr_value * 1.375
+    elif fitness_level == 3:
+        num = bmr_value * 1.55
+    elif fitness_level == 4:
+        num = bmr_value * 1.725
+    elif fitness_level == 5:
+        num = bmr_value * 1.9
+    return num

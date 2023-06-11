@@ -18,10 +18,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
+                <a class="nav-link active" aria-current="page" href="/home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/quiz">Quiz</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,12 +72,13 @@
       <main>
          <!-- Calendar Portion  -->
         <div class="d-flex gap-2 justify-content-center align-items-center text-center m-3 text-uppercase fs-2">
-          
-          <button type="button" class="btn btn-outline-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-            </svg>
-          </button>
+          <form action="/goBack/{{date1}}">
+            <button type="submit" class="btn btn-outline-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+              </svg>
+            </button>
+          </form>
           
           <button type="button" class="btn btn-outline-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
@@ -87,15 +88,23 @@
           <br>
           <br>
           <div>
-            Mon Jun 5 2023
+            {{date}}
           </div>
-          <button type="button" class="btn btn-outline-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-            </svg>
-          </button>
+
+          <form action="/goForward/{{date1}}">
+            <button type="submit" class="btn btn-outline-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+            </button>
+          </form>
           
         </div>
+
+        <!-- Calories -->
+        <br>
+        <h4 style = "text-align: center;">Calorie Goal: {{calorie_tracker}}</h4>
+        <br> 
         
         <!-- Breakfast Widget -->
         
@@ -114,44 +123,31 @@
           </div>
           <div>
             <!-- Food information -->
-            <div class="d-flex border rounded m-3">
-              <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
-                <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
-                <div style="width: 100%;" class="d-flex">
-                  <div style="width:50%;" class="fs-3">
-                    Sandwich
-                  </div>
-                  <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
-                    150
-                  </div>
-                </div>
-              </div>
-              
-              <button style="width:7%" type="button" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </button>
-            </div>
-            <div class="d-flex border rounded m-3">
-              <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
-                <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
-                <div style="width: 100%;" class="d-flex">
-                  <div style="width:50%;" class="fs-3">
-                    Sandwich
-                  </div>
-                  <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
-                    150
+            {% for food in breakfastData %}
+              <div class="d-flex border rounded m-3">
+                <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
+                  <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
+                  <div style="width: 100%;" class="d-flex">
+                    <div style="width:50%;" class="fs-3">
+                      {{food[1]}}
+                    </div>
+                    <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
+                      {{food[7]}}
+                    </div>
                   </div>
                 </div>
+                
+                <form action="/delete" method="POST">
+                  <input type="hidden" name="id" value="{{food[3]}}">
+                  <input type="hidden" name="foodType" value="{{food[8]}}">
+                  <button action="submit" style="width:7%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                  </button>
+                </form>
               </div>
-              
-              <button style="width:7%" type="button" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </button>
-            </div>
+            {% endfor %}
           </div>
         </div>
         
@@ -172,44 +168,32 @@
           </div>
           <div>
             <!-- Food information -->
-            <div class="d-flex border rounded m-3">
-              <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
-                <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
-                <div style="width: 100%;" class="d-flex">
-                  <div style="width:50%;" class="fs-3">
-                    Sandwich
-                  </div>
-                  <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
-                    150
-                  </div>
-                </div>
-              </div>
-              
-              <button style="width:7%" type="button" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </button>
-            </div>
-            <div class="d-flex border rounded m-3">
-              <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
-                <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
-                <div style="width: 100%;" class="d-flex">
-                  <div style="width:50%;" class="fs-3">
-                    Sandwich
-                  </div>
-                  <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
-                    150
+            {% for food in lunchData %}
+              <div class="d-flex border rounded m-3">
+                <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
+                  <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
+                  <div style="width: 100%;" class="d-flex">
+                    <div style="width:50%;" class="fs-3">
+                      {{food[1]}}
+                    </div>
+                    <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
+                      {{food[7]}}
+                    </div>
                   </div>
                 </div>
+                
+                <form action="/delete" method="POST">
+                  <input type="hidden" name="id" value="{{food[3]}}">
+                  <input type="hidden" name="foodType" value="{{food[8]}}">
+                  <button action="submit" style="width:7%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                  </button>
+                </form>
               </div>
-              
-              <button style="width:7%" type="button" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </button>
-            </div>
+            {% endfor %}
+          
           </div>
         </div>
         
@@ -230,44 +214,31 @@
           </div>
           <div>
             <!-- Food information -->
-            <div class="d-flex border rounded m-3">
-              <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
-                <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
-                <div style="width: 100%;" class="d-flex">
-                  <div style="width:50%;" class="fs-3">
-                    Sandwich
-                  </div>
-                  <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
-                    150
-                  </div>
-                </div>
-              </div>
-              
-              <button style="width:7%" type="button" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </button>
-            </div>
-            <div class="d-flex border rounded m-3">
-              <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
-                <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
-                <div style="width: 100%;" class="d-flex">
-                  <div style="width:50%;" class="fs-3">
-                    Sandwich
-                  </div>
-                  <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
-                    150
+            {% for food in dinnerData %}
+              <div class="d-flex border rounded m-3">
+                <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
+                  <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
+                  <div style="width: 100%;" class="d-flex">
+                    <div style="width:50%;" class="fs-3">
+                      {{food[1]}}
+                    </div>
+                    <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
+                      {{food[7]}}
+                    </div>
                   </div>
                 </div>
+                
+                <form action="/delete" method="POST">
+                  <input type="hidden" name="id" value="{{food[3]}}">
+                  <input type="hidden" name="foodType" value="{{food[8]}}">
+                  <button action="submit" style="width:7%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                  </button>
+                </form>
               </div>
-              
-              <button style="width:7%" type="button" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </button>
-            </div>
+            {% endfor %}
           </div>
         </div>
         
@@ -288,44 +259,31 @@
           </div>
           <div>
             <!-- Food information -->
-            <div class="d-flex border rounded m-3">
-              <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
-                <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
-                <div style="width: 100%;" class="d-flex">
-                  <div style="width:50%;" class="fs-3">
-                    Sandwich
-                  </div>
-                  <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
-                    150
-                  </div>
-                </div>
-              </div>
-              
-              <button style="width:7%" type="button" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </button>
-            </div>
-            <div class="d-flex border rounded m-3">
-              <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
-                <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
-                <div style="width: 100%;" class="d-flex">
-                  <div style="width:50%;" class="fs-3">
-                    Sandwich
-                  </div>
-                  <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
-                    150
+            {% for food in snackData %}
+              <div class="d-flex border rounded m-3">
+                <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
+                  <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
+                  <div style="width: 100%;" class="d-flex">
+                    <div style="width:50%;" class="fs-3">
+                      {{food[1]}}
+                    </div>
+                    <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
+                      {{food[7]}}
+                    </div>
                   </div>
                 </div>
+
+                <form action="/delete" method="POST">
+                  <input type="hidden" name="id" value="{{food[3]}}">
+                  <input type="hidden" name="foodType" value="{{food[8]}}">
+                  <button action="submit" style="width:7%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                  </button>
+                </form>
               </div>
-              
-              <button style="width:7%" type="button" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </button>
-            </div>
+            {% endfor %}
           </div>
         </div>
         

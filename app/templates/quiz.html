@@ -23,20 +23,37 @@
             <input type="text" name="Last"></input>
             <br>  
             <label for="gender">Preferred Gender</label>
-            <input type="number" name="gender"></input>
+            <select id="gender" name="gender">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+              </select>
             <br>  
-            <label for="weight">Weight (in pounds)</label>
+            <label for="weight">Weight (in pounds):</label>
             <input type="number" name="weight"> </input>
             <br> 
-            <label for="height">Height (in cm)</label>
+            <label for="height">Height (in inches)</label>
             <input type="number" name="height"> </input>
             <br> 
             <label for="age">Age (in years)</label>
             <input type="number" name="age"> </input>
             <br> 
-            <label for="fitness_level">Fitness Level 1-5</label>
-            <input type="number" name="fitness_level"> </input>
+            <label for="fitness_level">Activity Level 1-5</label>
+            <select id="fitness_level" name="fitness_level">
+                <option value="1">1 - Sedentary</option>
+                <option value="2">2 - Lightly Active</option>
+                <option value="3">3 - Moderately Active</option>
+                <option value="4">4 - Very Active</option>
+                <option value="5">5 - Extremely Active</option>
+              </select>
             <br> 
+            <label for="goal">Goal</label>
+            <select id="goal" name="goal">
+                <option value="lose">Lose weight</option>
+                <option value="maintain">Maintain current weight</option>
+                <option value="gain">Gain weight</option>
+              </select>
+              <br> 
+              <br>
             <input type="submit">
         </form>
     </div>

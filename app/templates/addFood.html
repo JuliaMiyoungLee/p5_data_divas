@@ -18,10 +18,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
+                <a class="nav-link active" aria-current="page" href="/dashboard/{{date1}}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/quiz">Quiz</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -84,26 +84,35 @@
             <!-- Food information -->
             {% if data %}
             {% for food in data %}
+              <form action="/addFoods" method="POST">
                 <div class="d-flex border rounded m-3">
                 <div style="width:93%;" class="p-2 d-flex">
                     <img src="" alt="">
                     <div class="">
-                    food: {{food["description"]}}<br>
-                    brand: {{food["brand"]}}<br>
-                    id: {{food["id"]}}<br>
+                    <input type="hidden" name="name" value="{{food['description']}}">food: {{food["description"]}}<br>
+                    <input type="hidden" name="brand" value="{{food['brand']}}">brand: {{food["brand"]}}<br>
+                    <input type="hidden" name="id" value='{{food["id"]}}'>id: {{food["id"]}}<br>
                     <!--have to move to foodDesc.html -->
-                    protein: {{food["protein"]}}<br>
-                    fat: {{food["fat"]}}<br>
-                    carbs: {{food["carbs"]}}<br>
-                    calories per 100g: {{food["calories per 100g"]}}<br>
+                    <input type="hidden" name="protein" value="{{food['protein']}}">protein: {{food["protein"]}}<br>
+                    <input type="hidden" name="fat" value="{{food['fat']}}">fat: {{food["fat"]}}<br>
+                    <input type="hidden" name="carbs" value="{{food['carbs']}}">carbs: {{food["carbs"]}}<br>
+                    <input type="hidden" name="calories" value="{{food['calories per 100g']}}">calories per 100g: {{food["calories per 100g"]}}<br>
+                    <select id="foodType" name="foodType">
+                      <option value="breakfast">Breakfast</option>
+                      <option value="lunch">Lunch</option>
+                      <option value="dinner">Dinner</option>
+                      <option value="snack">Snack</option>
+                    </select>
+                    <br>
                     </div>
                 </div>
 
-                <button type="button" class="d-flex align-items-center btn btn-outline-primary" style="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
-                    </svg>
-                </button>
+                  <button type="submit" class="d-flex align-items-center btn btn-outline-primary" style="">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
+                      </svg>
+                  </button>
+              </form>
                 
                 </div>
             {% endfor %}

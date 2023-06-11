@@ -49,3 +49,25 @@ annaF -- 2023-06-06 23:11
 - pull macronutrients from database 
 - logout functionality 
 - template clean up 
+=================================================
+annaF -- 2023-06-07 14:42
+- pull worout data from database 
+- format workouts.html 
+- fix gender issue with Julia 
+help me there is so much SMOG
+=================================================
+juliaL -- 2023-06-09 05:14
+Just remembered I should update this
+- Linked html to dashboard so you can now add and delete foods
+- Added feature to change date and go backward
+- Now you can visit the future, too!!!
+send help I've been doing this since like 12AM...
+=================================================
+annaF -- 2023-06-10 23:56
+- readme requirements 
+- update design doc to current state + logistics (will finish on Monday ig)
+- fix algorithm and connect to database 
+- display fluid cals on dashboard 
+- unsuccessful playing around with bootstrap 
+I am not live laugh loving :/ 
+* (the weird commit was due to me switching commit emails and failing!)

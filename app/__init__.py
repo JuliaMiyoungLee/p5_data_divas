@@ -104,15 +104,6 @@ def quiz_me():
         today = dates.today().strftime("%m-%d-%Y")
         print(goal)
         data_tables.update_quiz(keys=["gender", "goal", "weight", "height", "age","fitness_level"], values=[gender, goal, weight, height, age, fit_lvl], username=username)
-        
-        # **** DISPLAY CALORIE ALONGSIDE REDIRECT?? ****
-        # to display calorie needed to maintain weight
-        # kg_weight = lb_to_kg(float(request.form["weight"]))
-        # cm_height = in_to_cm(float(request.form["height"]))
-        # num_value_age = float(request.form["age"])
-        # num_value_fitness = float(request.form["fitness_level"])
-        # bmr_value = bmr(gender, kg_weight, cm_height, num_value_age)
-        # amr_value = amr(num_value_fitness, bmr_value)
         return redirect(f'/dashboard/{today}')#, calorie=amr_value)
     
 @app.route("/addFoods", methods=["GET", "POST"])

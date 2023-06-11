@@ -62,3 +62,11 @@ Just remembered I should update this
 - Added feature to change date and go backward
 - Now you can visit the future, too!!!
 send help I've been doing this since like 12AM...
+=================================================
+annaF -- 2023-06-10 
+- readme requirements 
+- update design doc to current state + logistics (will finish on Monday ig)
+- fix algorithm and connect to database 
+- display fluid cals on dashboard 
+- unsuccessful playing around with bootstrap 
+I am not live laugh loving :/ 

@@ -61,7 +61,6 @@ def search_exercise(exerciseName):
             exercises.append({"exercise":all[index]["Activity, Exercise or Sport (1 hour)"],"calories":conversion})
     print(exercises)
     return exercises 
-    # check if query is in database 
     
     
 

@@ -72,13 +72,16 @@ def dash(date):
             if(request.form["exercise_search"] != None): 
                 return render_template("workouts.html", data=api_funcs.search_exercise(request.form["exercise_search"]), search=request.form["exercise_search"], date1=date)
     else:
-        dateDisplay = calendify.get_date_fancy(date)
         user = session["username"]
+        # user calorie display 
+        calories = data_tables.adjust_calories(user)
+        #date and food/exercise displays
+        dateDisplay = calendify.get_date_fancy(date)
         breakfasts = data_tables.get_breakfast(user, date)
         lunchs = data_tables.get_lunch(user, date)
         dinners = data_tables.get_dinner(user, date)
         snacks = data_tables.get_snack(user, date)
-        return render_template("dashboard.html", breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackDinner=snacks, date=dateDisplay, date1=date)
+        return render_template("dashboard.html", calorie_tracker = calories, breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackDinner=snacks, date=dateDisplay, date1=date)
 
 @app.route("/profile")
 def profile(): 

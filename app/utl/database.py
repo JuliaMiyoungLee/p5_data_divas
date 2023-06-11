@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import date
+import utl.algorithm as algo_funcs
 DB_FILE = "DB_FILE.db"
 
 # User Registry and Login
@@ -7,7 +8,7 @@ def setup():
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
     # c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text);")
-    c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, gender text, goal text, weight integer,height integer, age integer, fitness_level integer);")
+    c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, gender text, goal text, weight integer,height integer, age integer, fitness_level integer, calorie_goal integer);")
     c.execute("CREATE TABLE IF NOT EXISTS foods(username text, name text, brand text, id integer, protein text, fat text, carbs text, calories integer, foodType text, timestamp text);")
     db.commit()
     db.close() 
@@ -26,7 +27,7 @@ def register_me(username, password):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
     # insert the user into db 
-    c.execute("insert INTO users VALUES(?, ? ,NULL, NULL, NULL, NULL, NULL, NULL)", [username, password,])
+    c.execute("insert INTO users VALUES(?, ? ,NULL, NULL, NULL, NULL, NULL, NULL, NULL)", [username, password,])
     db.commit()
     db.close() 
 
@@ -79,6 +80,39 @@ def quizzed(username):
     if gender == None:
         return 0
     return 1
+
+# # fluid calorie display  
+def calculate(username):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = "SELECT * FROM users WHERE username = '" + username + "'"
+    info = c.execute(query)
+    results = info.fetchall()
+    print(results)
+    gender = results[0][2]
+    goal = results[0][3]
+    weight = results[0][4]
+    height = results[0][5]
+    age = results[0][6]
+    fitness_level = results[0][7]
+    user_bmr = algo_funcs.bmr(gender, height, weight,age)
+    user_amr = algo_funcs.amr(fitness_level, user_bmr)
+    result = algo_funcs.calories(goal,user_amr)
+    db.commit() 
+    db.close() 
+    return result
+
+def adjust_calories(username):
+    val = calculate(username)
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    c.execute("UPDATE users SET calorie_goal = ? WHERE username = ?", (val, username))
+    count = c.execute("SELECT calorie_goal FROM users WHERE username = '" + username + "'")
+    data = count.fetchall()
+    cal = data[0][0]
+    db.commit()
+    db.close() 
+    return cal 
 
 # Updates Food tables
 def add_food(values):
@@ -144,3 +178,4 @@ def delete_food(username, foodId, foodType, date):
     c.execute(query)
     db.commit() 
     db.close()
+

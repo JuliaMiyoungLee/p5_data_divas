@@ -113,7 +113,7 @@ def dash(date):
         elif (add_cats < 4):
             add_cats = 4 - add_cats
         
-        
+        calorieG = calories
         calories -= (total_breakfast_calories + total_lunch_calories + total_dinner_calories + total_snack_calories)
         
         if total_breakfast_calories == 0:
@@ -138,7 +138,7 @@ def dash(date):
         
         
         exercises = data_tables.get_exercises(user, date)
-        return render_template("dashboard.html", calorie_tracker = calories, breakfastData=breakfasts, breakfast_tracker = total_breakfast_calories, lunch_tracker = total_lunch_calories, dinner_tracker = total_dinner_calories, snacks_tracker = total_snack_calories, lunchData=lunchs, dinnerData=dinners, snackData=snacks, exercises=exercises, date=dateDisplay, date1=date, today=today)
+        return render_template("dashboard.html", calorie_goal = calorieG, calorie_tracker = calories, breakfastData=breakfasts, breakfast_tracker = total_breakfast_calories, lunch_tracker = total_lunch_calories, dinner_tracker = total_dinner_calories, snacks_tracker = total_snack_calories, lunchData=lunchs, dinnerData=dinners, snackData=snacks, exercises=exercises, date=dateDisplay, date1=date, today=today)
 
 
 @app.route("/profile")

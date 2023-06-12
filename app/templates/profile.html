@@ -21,6 +21,9 @@
                 <a class="nav-link active" aria-current="page" href="/home">Home</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="/quiz">Quiz</a>
               </li>
             </ul>
@@ -67,7 +70,7 @@
               </div>
               <div style="width: 75%;" class="">
                 <div id="name" class="fs-1 fw-bold" style="">
-                    First Last
+                    {{user}}
                 </div>
                 <br>
                 <div id="name" class="fs-3 fw-semibold" style="">
@@ -75,42 +78,42 @@
                 </div>
                 <br>
                 
-                <div class = center> 
-                    <form action="/quiz" method="post"> 
+                <div> 
+                    <form action="/updateProfile" method="post"> 
                         <select class="p-1 rounded fs-4 fw-medium" style="background-color: rgb(228, 227, 227);" id="gender" default="male" name="gender">
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
+                            <option {{female}} value="female">Female</option>
+                            <option {{male}} value="male">Male</option>
                         </select>
                         <br>  
                         <br>
                         
                         <label class="p-1 rounded fs-4 fw-medium" for="weight">Weight (in pounds):</label>
-                        <input class="p-1 rounded fs-4 fw-medium" style="background-color: rgb(228, 227, 227);" type="number" name="weight"> </input>
+                        <input value="{{weight}}" class="p-1 rounded fs-4 fw-medium" style="background-color: rgb(228, 227, 227);" type="number" name="weight"> </input>
                         <br> 
                         <br>
                         <label for="height">Height (in inches)</label>
-                        <input class="p-1 rounded fs-4 fw-semibold" style="background-color: rgb(228, 227, 227);" type="number" name="height"> </input>
+                        <input value="{{height}}" class="p-1 rounded fs-4 fw-semibold" style="background-color: rgb(228, 227, 227);" type="number" name="height"> </input>
                         <br> 
                         <br>
                         <label for="age">Age (in years)</label>
-                        <input class="p-1 rounded fs-4 fw-semibold" style="background-color: rgb(228, 227, 227);" type="number" name="age"> </input>
+                        <input value="{{age}}" class="p-1 rounded fs-4 fw-semibold" style="background-color: rgb(228, 227, 227);" type="number" name="age"> </input>
                         <br> 
                         <br>
                         <label for="fitness_level">Activity Level 1-5</label>
                         <select class="p-1 rounded fs-4 fw-semibold" style="background-color: rgb(228, 227, 227);" id="fitness_level" name="fitness_level">
-                            <option value="1">1 - Sedentary</option>
-                            <option value="2">2 - Lightly Active</option>
-                            <option value="3">3 - Moderately Active</option>
-                            <option value="4">4 - Very Active</option>
-                            <option value="5">5 - Extremely Active</option>
+                            <option {{sedentary}} value="1">1 - Sedentary</option>
+                            <option {{lightlyactive}} value="2">2 - Lightly Active</option>
+                            <option {{moderatelyactive}} value="3">3 - Moderately Active</option>
+                            <option {{veryactive}} value="4">4 - Very Active</option>
+                            <option {{extremelyactive}} value="5">5 - Extremely Active</option>
                           </select>
                         <br> 
                         <br>
                         <label for="goal">Goal</label>
                         <select id="goal" name="goal">
-                            <option value="lose">Lose weight</option>
-                            <option value="maintain">Maintain current weight</option>
-                            <option value="gain">Gain weight</option>
+                            <option {{lose}} value="lose">Lose weight</option>
+                            <option {{maintain}} value="maintain">Maintain current weight</option>
+                            <option {{gain}} value="gain">Gain weight</option>
                           </select>
                           <br> 
                           <br>

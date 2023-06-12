@@ -35,7 +35,7 @@ def register_me(username, password):
 def log_me_in(username, password): 
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
-    #get password 
+    # password 
     info = c.execute("SELECT password FROM users WHERE username=?", (username,))
     results = info.fetchall()
     correct = results[0][0]
@@ -74,6 +74,22 @@ def update_weight(username, weight, timestamp):
     c.execute(query)
     db.commit() 
     db.close()
+    
+def delete_user(username):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = f"DELETE FROM users WHERE username = '{username}'"
+    c.execute(query)
+    db.commit() 
+    db.close()
+
+def update_user_values(username, password, gender, goal, weight,height, age, fitness_level, calorie_goal):
+    delete_user(username)
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    c.execute("insert INTO users VALUES(?, ? ,?, ?, ?, ?, ?, ?, ?)", [username, password,gender,goal,weight,height,age,fitness_level,calorie_goal,])
+    db.commit()
+    db.close() 
 
 def get_user(username):
     db = sqlite3.connect("DB_FILE.db")
@@ -119,6 +135,25 @@ def calculate(username):
     db.commit() 
     db.close() 
     return result
+
+def get_calorie_goal(username):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = "SELECT calorie_goal FROM users WHERE username = '" + username + "'"
+    info = c.execute(query)
+    results = info.fetchall()
+    results = results[0][0]
+    db.commit() 
+    db.close() 
+    return results
+
+def update_usernames(username, new_username):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = "UPDATE users SET username = '" + new_username + "' WHERE username = '" + username + "'"
+    c.execute(query)
+    db.commit() 
+    db.close()
 
 def get_weight(username):
     db = sqlite3.connect("DB_FILE.db")

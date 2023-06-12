@@ -23,20 +23,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="/quiz">Quiz</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
             </ul>
             <!-- food search  -->
             <form class="d-flex" role="search" method="POST">
@@ -108,6 +94,9 @@
             <div style="width:50%" class="fw-bold d-flex align-items-center fs-2">
               Breakfast
             </div>
+            <div>
+              {{breakfast_tracker}}
+            </div>
             <div style="width:50%" class="d-flex justify-content-end">
               <button type="button" class="d-flex align-items-center btn btn-outline-primary" style="">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -153,6 +142,9 @@
           <div class="d-flex">
             <div style="width:50%" class="fw-bold d-flex align-items-center fs-2">
               Lunch
+            </div>
+            <div>
+              {{lunch_tracker}}
             </div>
             <div style="width:50%" class="d-flex justify-content-end">
               <button type="button" class="d-flex align-items-center btn btn-outline-primary" style="">
@@ -201,6 +193,9 @@
             <div style="width:50%" class="fw-bold d-flex align-items-center fs-2">
               Dinner
             </div>
+            <div>
+              {{dinner_tracker}}
+            </div>
             <div style="width:50%" class="d-flex justify-content-end">
               <button type="button" class="d-flex align-items-center btn btn-outline-primary" style="">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -246,6 +241,9 @@
           <div class="d-flex">
             <div style="width:50%" class="fw-bold d-flex align-items-center fs-2">
               Snacks
+            </div>
+            <div>
+              {{snacks_tracker}}
             </div>
             <div style="width:50%" class="d-flex justify-content-end">
               <button type="button" class="d-flex align-items-center btn btn-outline-primary" style="">
@@ -319,7 +317,7 @@
                         {{exercise[1]}}
                       </div>
                       <div>
-                        {{exercise[3]}} reps
+                        {{exercise[3]}} Minutes
                       </div>
                     </div>
                     <div style="width: 50%;" class="fs-3 d-flex justify-content-end">
@@ -331,7 +329,7 @@
                 <form action="/deleteExercise" method="POST">
                   <input type="hidden" name="name" value="{{exercise[1]}}">
                   <div style="width:100%;" class="d-flex align-items-center">
-                    <button action="submit" style="width:100%; height: 70%; background-color: lightgreen;" type="submit" class="rounded-circle d-flex justify-content-center align-items-center btn">
+                    <button action="submit" style="width:100%;" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
                       <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                       </svg>

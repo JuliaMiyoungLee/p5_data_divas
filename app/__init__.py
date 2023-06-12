@@ -57,6 +57,13 @@ def home():
     date = dates.today().strftime("%m-%d-%Y")
     return redirect(f"/dashboard/{date}")
 
+def get_cals(lst):
+    cals = 0
+    for i in lst:
+        cals += i[-3]
+    return cals
+        
+
 @app.route("/dashboard/<date>", methods=['GET', 'POST'])
 def dash(date): 
     if flask.request.method == "POST":
@@ -79,11 +86,59 @@ def dash(date):
         #date and food/exercise displays
         dateDisplay = calendify.get_date_fancy(date)
         breakfasts = data_tables.get_breakfast(user, date)
+        total_breakfast_calories = get_cals(breakfasts)
         lunchs = data_tables.get_lunch(user, date)
+        total_lunch_calories = get_cals(lunchs)
         dinners = data_tables.get_dinner(user, date)
+        total_dinner_calories = get_cals(dinners)
         snacks = data_tables.get_snack(user, date)
+        total_snack_calories = get_cals(snacks)
+        
+        add_cats = 0
+        if total_breakfast_calories > 0:
+            add_cats += 1
+            
+        if total_lunch_calories > 0:
+            add_cats += 1
+            
+        if total_dinner_calories > 0:
+            add_cats += 1
+            
+        if total_snack_calories > 0:
+            add_cats += 1
+            
+        if add_cats == 0:
+            add_cats = 4
+        elif (add_cats < 4):
+            add_cats = 4 - add_cats
+        
+        
+        calories -= (total_breakfast_calories + total_lunch_calories + total_dinner_calories + total_snack_calories)
+        
+        if total_breakfast_calories == 0:
+            total_breakfast_calories = "Calories Available: " + str(int(calories / add_cats))
+        else:
+            total_breakfast_calories = "Total Calories: " + str(total_breakfast_calories)
+        
+        if total_lunch_calories == 0:
+            total_lunch_calories = "Calories Available: " + str(int(calories / add_cats))
+        else:
+            total_lunch_calories = "Total Calories: " + str(total_lunch_calories)
+            
+        if total_dinner_calories == 0:
+            total_dinner_calories = "Calories Available: " + str(int(calories / add_cats))
+        else:
+            total_dinner_calories = "Total Calories: " + str(total_dinner_calories)
+            
+        if total_snack_calories == 0:
+            total_snack_calories = "Calories Available: " + str(int(calories / add_cats))
+        else:
+            total_snack_calories = "Total Calories: " + str(total_snack_calories)
+        
+        
         exercises = data_tables.get_exercises(user, date)
-        return render_template("dashboard.html", calorie_tracker = calories, breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackData=snacks, exercises=exercises, date=dateDisplay, date1=date, today=today)
+        return render_template("dashboard.html", calorie_tracker = calories, breakfastData=breakfasts, breakfast_tracker = total_breakfast_calories, lunch_tracker = total_lunch_calories, dinner_tracker = total_dinner_calories, snacks_tracker = total_snack_calories, lunchData=lunchs, dinnerData=dinners, snackData=snacks, exercises=exercises, date=dateDisplay, date1=date, today=today)
+
 
 @app.route("/profile")
 def profile(): 
@@ -132,9 +187,10 @@ def addExercise():
     today = dates.today().strftime("%m-%d-%Y")
     if flask.request.method == "POST":
         user = flask.session["username"]
+        weight = data_tables.get_weight(user)
         name = request.form["name"]
         reps = request.form["reps"]
-        cals = float(request.form["cals"]) * float(reps)
+        cals = float(request.form["cals"]) * float(reps) / 60 * float(weight)
         data_tables.add_exercise([user, name, cals, reps])
         return redirect(f"/dashboard/{today}")
     return render_template("workouts.html")

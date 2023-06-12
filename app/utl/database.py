@@ -72,6 +72,8 @@ def update_weight(username, weight, timestamp):
     c = db.cursor()
     query = f"INSERT INTO weights VALUES ('{username}', '{weight}', '{timestamp}')"
     c.execute(query)
+    query = f"UPDATE users SET weight = '{weight}' WHERE username = '{username}'"
+    c.execute(query)
     db.commit() 
     db.close()
 

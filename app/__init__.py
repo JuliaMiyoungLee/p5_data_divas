@@ -233,6 +233,14 @@ def go_forward(date):
     newDate = calendify.get_after(date)
     return redirect(f"/dashboard/{newDate}")
 
+@app.route("/updateWeight", methods=["POST"])
+def updateWeight():
+    user = session["username"]
+    weight = request.form["weight"]
+    today = dates.today().strftime("%m-%d-%Y")
+    data_tables.update_weight(user, weight, today)
+    return redirect(f"/dashboard/{today}")
+
 @app.route("/logout")
 def logout(): 
     session.pop("username")

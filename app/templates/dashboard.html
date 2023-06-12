@@ -347,7 +347,7 @@
         <!--Weight Stuff-->
         <div style="margin: auto; width: 50%; margin-bottom: 2rem;" class="p-3 justify-content-center border rounded">
           <div>
-            <!-- Exercise information -->
+            <!-- Weight information -->
               <div class="d-flex border rounded m-3">
                 <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
                   <div style="width: 100%;" class="d-flex align-items-center">
@@ -362,6 +362,13 @@
                   </div>
                 </div>  
               </div>
+              <form action="/updateWeight" method="POST">
+                <input type="number" name="weight">
+                <div style="width:100%;" class="d-flex align-items-center">
+                  <button action="submit" style="width:100%;" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
+                  </button>
+                </div>
+              </form>
           </div>
         </div>
         

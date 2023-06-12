@@ -120,6 +120,17 @@ def calculate(username):
     db.close() 
     return result
 
+def get_weight(username):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = "SELECT weight FROM users WHERE username = '" + username + "'"
+    info = c.execute(query)
+    results = info.fetchall()
+    results = results[0][0]
+    db.commit() 
+    db.close() 
+    return results
+
 def adjust_calories(username):
     val = calculate(username)
     db = sqlite3.connect("DB_FILE.db")
@@ -187,6 +198,7 @@ def get_snack(username, date):
     db.commit() 
     db.close()
     return foods
+
 
 def delete_food(username, foodId, foodType, date):
     db = sqlite3.connect("DB_FILE.db")

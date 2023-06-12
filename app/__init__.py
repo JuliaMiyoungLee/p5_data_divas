@@ -73,6 +73,7 @@ def dash(date):
                 return render_template("workouts.html", data=api_funcs.search_exercise(request.form["exercise_search"]), search=request.form["exercise_search"], date1=date)
     else:
         user = session["username"]
+        today = dates.today().strftime('%m-%d-%Y')
         # user calorie display 
         calories = data_tables.adjust_calories(user)
         #date and food/exercise displays
@@ -81,7 +82,8 @@ def dash(date):
         lunchs = data_tables.get_lunch(user, date)
         dinners = data_tables.get_dinner(user, date)
         snacks = data_tables.get_snack(user, date)
-        return render_template("dashboard.html", calorie_tracker = calories, breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackDinner=snacks, date=dateDisplay, date1=date)
+        exercises = data_tables.get_exercises(user, date)
+        return render_template("dashboard.html", calorie_tracker = calories, breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackData=snacks, exercises=exercises, date=dateDisplay, date1=date, today=today)
 
 @app.route("/profile")
 def profile(): 
@@ -123,12 +125,32 @@ def addFood():
         return redirect(f"/dashboard/{today}")
     return render_template("addFood.html")
 
+@app.route("/addExercise", methods=["GET", "POST"])
+def addExercise():
+    today = dates.today().strftime("%m-%d-%Y")
+    if flask.request.method == "POST":
+        user = flask.session["username"]
+        name = request.form["name"]
+        reps = request.form["reps"]
+        cals = float(request.form["cals"]) * float(reps)
+        data_tables.add_exercise([user, name, cals, reps])
+        return redirect(f"/dashboard/{today}")
+    return render_template("workouts.html")
+
+# Delete button should only appear if current date is the same as displayed date
 @app.route("/delete", methods=["POST"])
 def delete_food():
     today = dates.today().strftime("%m-%d-%Y")
     foodId = request.form["id"]
     foodType = request.form["foodType"]
     data_tables.delete_food(session["username"], foodId, foodType, today)
+    return redirect(f"/dashboard/{today}")
+
+@app.route("/deleteExercise", methods=["POST"])
+def delete_exercise():
+    today = dates.today().strftime("%m-%d-%Y")
+    name = request.form["name"]
+    data_tables.delete_exercise(session["username"], name, today)
     return redirect(f"/dashboard/{today}")
 
 @app.route("/goBack/<date>")

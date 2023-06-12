@@ -7,9 +7,9 @@ DB_FILE = "DB_FILE.db"
 def setup(): 
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor() 
-    # c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text);")
     c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, gender text, goal text, weight integer,height integer, age integer, fitness_level integer, calorie_goal integer);")
     c.execute("CREATE TABLE IF NOT EXISTS foods(username text, name text, brand text, id integer, protein text, fat text, carbs text, calories integer, foodType text, timestamp text);")
+    c.execute("CREATE TABLE IF NOT EXISTS exercises(username text, name text, cals text, reps integer, timestamp text);")
     db.commit()
     db.close() 
 
@@ -179,3 +179,37 @@ def delete_food(username, foodId, foodType, date):
     db.commit() 
     db.close()
 
+# Exercise functions
+def add_exercise(values):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = "INSERT INTO exercises ("
+    query += "username, name, cals, reps, timestamp) VALUES ("
+    for value in values:
+        if type(value) is str:
+            query += f"'{value}', "
+        else:
+            query += f"{value}, "
+    query += " '" + date.today().strftime("%m-%d-%Y") + "')"
+    c.execute(query)
+    db.commit() 
+    db.close()
+
+def get_exercises(username, date):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = f"SELECT * FROM exercises WHERE username = '{username}' AND timestamp = '{date}'"
+    info = c.execute(query)
+    foods = info.fetchall()
+    db.commit() 
+    db.close()
+    return foods
+
+def delete_exercise(username, name, timestamp):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = f"DELETE FROM exercises WHERE username = '{username}' AND name = '{name}' AND timestamp = '{timestamp}'"
+    print(query)
+    c.execute(query)
+    db.commit() 
+    db.close()

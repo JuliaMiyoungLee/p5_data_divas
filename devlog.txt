@@ -71,3 +71,9 @@ annaF -- 2023-06-10 23:56
 - unsuccessful playing around with bootstrap 
 I am not live laugh loving :/ 
 * (the weird commit was due to me switching commit emails and failing!)
+=================================================
+juliaL -- 2023-06-11 9:05
+- readme Updated
+- display delete buttons only when current date matches displayed date
+- added exercise functionality
+Post-prom hangover even though I didn't drink?

@@ -83,23 +83,26 @@
           <div>
             <!-- Exercise information -->
           {% if data %}
-          {% for exercise in data %}
+            {% for exercise in data %}
+            <form action="/addExercise" method="POST">
               <div class="d-flex border rounded m-3">
               <div style="width:93%;" class="p-2 d-flex">
                   <img src="" alt="">
                   <div class="">
-                  exercise: {{exercise["exercise"]}}<br>
-                  calories burned per pound per hour: {{exercise["calories"]}}<br>
+                    <input type="hidden" name="name" value="{{exercise['exercise']}}">exercise: {{exercise["exercise"]}}<br>
+                    <input type="hidden" name="cals" value="{{exercise['calories']}}">calories burned per pound per hour: {{exercise["calories"]}}<br>
+                    Reps:<input type="number" name="reps"></input><br>
                   </div>
                 </div>
-                <button type="button" class="d-flex align-items-center btn btn-outline-primary" style="">
+                <button type="submit" class="d-flex align-items-center btn btn-outline-primary" style="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                       <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
                     </svg>
                 </button>
                 </div>
+              </form>
             {% endfor %}
-            {% endif %}
+          {% endif %}
           </div>
         </div>
       </main>

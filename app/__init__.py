@@ -73,6 +73,7 @@ def dash(date):
                 return render_template("workouts.html", data=api_funcs.search_exercise(request.form["exercise_search"]), search=request.form["exercise_search"], date1=date)
     else:
         user = session["username"]
+        weight = data_tables.get_user(user)[4]
         today = dates.today().strftime('%m-%d-%Y')
         # user calorie display 
         calories = data_tables.adjust_calories(user)
@@ -83,7 +84,7 @@ def dash(date):
         dinners = data_tables.get_dinner(user, date)
         snacks = data_tables.get_snack(user, date)
         exercises = data_tables.get_exercises(user, date)
-        return render_template("dashboard.html", calorie_tracker = calories, breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackData=snacks, exercises=exercises, date=dateDisplay, date1=date, today=today)
+        return render_template("dashboard.html", calorie_tracker = calories, breakfastData=breakfasts, lunchData=lunchs, dinnerData=dinners, snackData=snacks, exercises=exercises, date=dateDisplay, date1=date, today=today, weight=weight)
 
 @app.route("/profile")
 def profile(): 
@@ -104,7 +105,7 @@ def quiz_me():
         age = str(request.form["age"])
         fit_lvl = request.form["fitness_level"]
         today = dates.today().strftime("%m-%d-%Y")
-        print(goal)
+        data_tables.update_weight(username, weight, today)
         data_tables.update_quiz(keys=["gender", "goal", "weight", "height", "age","fitness_level"], values=[gender, goal, weight, height, age, fit_lvl], username=username)
         return redirect(f'/dashboard/{today}')#, calorie=amr_value)
     

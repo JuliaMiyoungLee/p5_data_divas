@@ -10,6 +10,7 @@ def setup():
     c.execute("CREATE TABLE IF NOT EXISTS users(username text, password text, gender text, goal text, weight integer,height integer, age integer, fitness_level integer, calorie_goal integer);")
     c.execute("CREATE TABLE IF NOT EXISTS foods(username text, name text, brand text, id integer, protein text, fat text, carbs text, calories integer, foodType text, timestamp text);")
     c.execute("CREATE TABLE IF NOT EXISTS exercises(username text, name text, cals text, reps integer, timestamp text);")
+    c.execute("CREATE TABLE IF NOT EXISTS weights(username text, weight text, timestamp text);")
     db.commit()
     db.close() 
 
@@ -65,6 +66,23 @@ def update_quiz(keys, values, username):
     c.execute(query)
     db.commit() 
     db.close()  
+
+def update_weight(username, weight, timestamp):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = f"INSERT INTO weights VALUES ('{username}', '{weight}', '{timestamp}')"
+    c.execute(query)
+    db.commit() 
+    db.close()
+
+def get_user(username):
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor() 
+    info = c.execute(f"SELECT * FROM users WHERE username='{username}'")
+    results = info.fetchall()
+    db.commit() 
+    db.close() 
+    return results[0]
         
 def quizzed(username):
     db = sqlite3.connect("DB_FILE.db")

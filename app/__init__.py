@@ -57,6 +57,17 @@ def home():
     date = dates.today().strftime("%m-%d-%Y")
     return redirect(f"/dashboard/{date}")
 
+@app.route("/profile", methods=['GET', 'POST'])
+def profilePage():
+    ref = data_tables.get_user(session["username"])
+    fem = None
+    male = None
+    weight = ref[4]
+    print(weight)
+    
+    
+    return render_template("profile.html", data=data)
+
 def get_cals(lst):
     cals = 0
     for i in lst:

@@ -22,6 +22,7 @@ def bmr(gender, weight, height, age):
 # amr (active metabolic rate): number of calories you need to consume to stay at your current weight
 # want to lose weight means calorie intake < amr returned value and/or higher fitness level
 def amr(fitness_level, bmr_value):
+    num = bmr_value
     if fitness_level == 1:
         num = bmr_value * 1.2
     elif fitness_level == 2:

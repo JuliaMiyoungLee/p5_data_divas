@@ -6,7 +6,7 @@ import flask
 import utl.api as api_funcs
 from datetime import date as dates
 import utl.calendar as calendify
-from utl.algorithm import *
+import utl.algorithm as algo_funcs
 
 app = Flask(__name__)
 app.secret_key = 'imthreesecondsawayfromgivingup'
@@ -62,11 +62,69 @@ def profilePage():
     ref = data_tables.get_user(session["username"])
     fem = None
     male = None
-    weight = ref[4]
-    print(weight)
+    if (ref[2]=="female"):
+        female = "selected"
+    else:
+        male = "selected"
+        
+    user = session["username"]
+    weight = ref[4] # Done
+    height = ref[5] # Done
+    age = ref[6] # Done
+    fitness_level = ref[7] # Done
+    goal = ref[3] # Done
+    # lose
+    # maintain
+    # gain
+    lose = None
+    maintain = None
+    gain = None
+    if (goal == "lose"):
+        lose = "selected"
+    elif (goal == "maintain"):
+        maintain = "selected"
+    else:
+        gain = "selected"
+
+    sedentary = None
+    lightly_active = None
+    moderately_active = None
+    very_active = None
+    extremely_active = None
+    
+    if fitness_level == 1:
+        sedentary = "selected"
+    elif fitness_level == 2:
+        lightly_active = "selected"
+    elif fitness_level == 3:
+        moderately_active = "selected"
+    elif fitness_level == 4:
+        very_active = "selected"
+    elif fitness_level == 5:
+        extremely_active = "selected"
+    
+    # fitness level is done
     
     
-    return render_template("profile.html", data=data)
+
+    return render_template("profile.html", user=user,lose = lose, gain = gain, maintain = maintain, sedentary=sedentary, lightlyactive=lightly_active, moderatelyactive=moderately_active,veryactive = very_active, extremelyactive = extremely_active, data=ref, male=male, fem=fem, weight=weight, height=height, age=age, goal=goal)
+
+@app.route("/updateProfile", methods=['GET', 'POST'])
+def updateProfile():
+    if flask.request.method == "POST":
+        None
+        gender = request.form["gender"]
+        weight = request.form["weight"]
+        height = request.form["height"]
+        age = request.form["age"]
+        fitness_level = request.form["fitness_level"]
+        goal = request.form["goal"]
+        user_bmr = algo_funcs.bmr(gender, int(height), int(weight),int(age))
+        user_amr = algo_funcs.amr(fitness_level, user_bmr)
+        cal = algo_funcs.calories(goal,user_amr)
+        data_tables.update_user_values(session["username"], session["password"],gender, goal,weight,height,age,fitness_level,calorie_goal=cal)
+
+    return redirect("/profile")
 
 def get_cals(lst):
     cals = 0
@@ -189,7 +247,7 @@ def addFood():
         calories = request.form["calories"]
         foodType = request.form["foodType"]
         quantity = request.form["gramValue"]
-        calories = int(calories) * int(quantity) / 100
+        calories = int(float(calories)) * int(quantity) / 100
         data_tables.add_food([user, name, brand, id, protein, fat, carbs, calories, foodType])
         return redirect(f"/dashboard/{today}")
     return render_template("addFood.html")

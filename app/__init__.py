@@ -119,6 +119,8 @@ def addFood():
         carbs = request.form["carbs"]
         calories = request.form["calories"]
         foodType = request.form["foodType"]
+        quantity = request.form["gramValue"]
+        calories = int(calories) * int(quantity) / 100
         data_tables.add_food([user, name, brand, id, protein, fat, carbs, calories, foodType])
         return redirect(f"/dashboard/{today}")
     return render_template("addFood.html")

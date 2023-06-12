@@ -80,13 +80,8 @@
             </button>
           </form>
           
-          <button type="button" class="btn btn-outline-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-            </svg>
-          </button>
-          <br>
-          <br>
+          
+          
           <div>
             {{date}}
           </div>
@@ -124,7 +119,7 @@
           <div>
             <!-- Food information -->
             {% for food in breakfastData %}
-              <div class="d-flex border rounded m-3">
+              <div class="d-flex border rounded m-3 align-items-center">
                 <div style="width:93%;gap:1rem;" class="p-2 d-flex align-items-center">
                   <img style="width: 2rem; height: 2rem;" src="../static/images/reshot-icon-sandwich-N6WKF3MQLX.svg" alt="">
                   <div style="width: 100%;" class="d-flex">
@@ -140,7 +135,7 @@
                 <form action="/delete" method="POST">
                   <input type="hidden" name="id" value="{{food[3]}}">
                   <input type="hidden" name="foodType" value="{{food[8]}}">
-                  <button action="submit" style="width:7%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
+                  <button action="submit" style="width:100%;" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
@@ -185,7 +180,7 @@
                 <form action="/delete" method="POST">
                   <input type="hidden" name="id" value="{{food[3]}}">
                   <input type="hidden" name="foodType" value="{{food[8]}}">
-                  <button action="submit" style="width:7%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
+                  <button action="submit" style="width:100%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
@@ -231,7 +226,7 @@
                 <form action="/delete" method="POST">
                   <input type="hidden" name="id" value="{{food[3]}}">
                   <input type="hidden" name="foodType" value="{{food[8]}}">
-                  <button action="submit" style="width:7%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
+                  <button action="submit" style="width:100%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
@@ -276,7 +271,7 @@
                 <form action="/delete" method="POST">
                   <input type="hidden" name="id" value="{{food[3]}}">
                   <input type="hidden" name="foodType" value="{{food[8]}}">
-                  <button action="submit" style="width:7%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
+                  <button action="submit" style="width:100%" type="submit" class="d-flex justify-content-center align-items-center btn btn-outline-danger">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
@@ -327,7 +322,7 @@
                   </div>
                 </div>
               </div>       
-              <div style="width:7%;" class="d-flex align-items-center">
+              <div style="width:100%;" class="d-flex align-items-center">
                 <button style="width:100%; height: 70%; background-color: lightgreen;" type="button" class="rounded-circle d-flex justify-content-center align-items-center btn">
                   <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>

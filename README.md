@@ -22,7 +22,7 @@ The Data Divas present to our most esteemed users, Truly Fit, our state-of-the-a
 
 <br>
 
-3. Navigate into the Truly_Delectable_Sleeping_Duckies repo using ```cd p5_data_divas/```
+3. Navigate into the Data_Divas repo using ```cd p5_data_divas/```
 <br>
 
 4. Create a virtual environment by entering ```python3 -m venv <VENV_PATH>```

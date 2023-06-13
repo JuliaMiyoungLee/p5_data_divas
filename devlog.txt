@@ -64,7 +64,7 @@ Just remembered I should update this
 send help I've been doing this since like 12AM...
 =================================================
 nicoleZ -- 2023-06-10 10:10
-- Started the calorie algorithm
+- started the calorie algorithm
 =================================================
 annaF -- 2023-06-10 23:56
 - readme requirements 
@@ -80,8 +80,13 @@ juliaL -- 2023-06-11 9:05
 - added exercise functionality
 Post-prom hangover even though I didn't drink?
 =================================================
-nicoleZ -- 2023-06-12 00:43
-- Created droplet
-- Everything on the repo so far is uploaded onto droplet
-- Working site ready
+nicoleZ -- 2023-06-12 0:43
+- created droplet
+- uploaded everything that is currently on the repo
+- Working site!
 =================================================
+annaF -- 2023-06-12 21:44
+- pull weights and timestamps from database
+- rendering progress graph on profile 
+- remove all console logs/print statements 
+WHEN WILL THE MERGE CONFLICTS END FDSDFSD

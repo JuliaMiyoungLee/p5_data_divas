@@ -55,22 +55,22 @@ def update_quiz(keys, values, username):
     c = db.cursor()
     query = "UPDATE users SET "
     for i in range(len(keys)):
-        print(keys)
         if(i==0 or i ==1):
             query += keys[i] + " = '" + values[i] + "', "
         else: 
             query += keys[i] + " = " + values[i] + ", "
     query = query[:-2]
     query += " WHERE username = '" + username + "';"
-    print(query)
     c.execute(query)
     db.commit() 
     db.close()  
 
-def update_weight(username, weight, timestamp):
+def update_weight(username, weight, timestamp, calGoal):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
     query = f"INSERT INTO weights VALUES ('{username}', '{weight}', '{timestamp}')"
+    c.execute(query)
+    query = f"UPDATE users SET weight = '{weight}', calorie_goal = {calGoal} WHERE username = '{username}'"
     c.execute(query)
     db.commit() 
     db.close()
@@ -105,7 +105,6 @@ def quizzed(username):
     c = db.cursor()
     # Build query
     query = "SELECT * FROM users WHERE username = '" + username + "'"
-    print(query)
     info = c.execute(query)
     results = info.fetchall()
     gender = results[0][2]
@@ -122,7 +121,6 @@ def calculate(username):
     query = "SELECT * FROM users WHERE username = '" + username + "'"
     info = c.execute(query)
     results = info.fetchall()
-    print(results)
     gender = results[0][2]
     goal = results[0][3]
     weight = results[0][4]
@@ -235,11 +233,10 @@ def get_snack(username, date):
     return foods
 
 
-def delete_food(username, foodId, foodType, date):
+def delete_food(username, foodId, foodType, cals, date):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = f"DELETE FROM foods WHERE username = '{username}' AND id = {foodId} AND foodType = '{foodType}' AND timestamp = '{date}'"
-    print(query)
+    query = f"DELETE FROM foods WHERE username = '{username}' AND id = {foodId} AND foodType = '{foodType}' AND calories = {cals} AND timestamp = '{date}'"
     c.execute(query)
     db.commit() 
     db.close()
@@ -274,7 +271,38 @@ def delete_exercise(username, name, timestamp):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
     query = f"DELETE FROM exercises WHERE username = '{username}' AND name = '{name}' AND timestamp = '{timestamp}'"
-    print(query)
     c.execute(query)
     db.commit() 
     db.close()
+
+def get_weights(username):
+    weights = [] 
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = c.execute("SELECT weight FROM weights WHERE username = '" + username + "'")
+    results = query.fetchall()
+    for each in results:
+        weights.append(each)
+    db.commit() 
+    db.close() 
+    return weights
+
+def get_stamps(username): 
+    stamps = [] 
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = c.execute("SELECT timestamp FROM weights WHERE username = '" + username + "'")
+    results = query.fetchall()
+    for each in results:
+        stamps.append(each)
+    db.commit() 
+    db.close() 
+    return stamps
+
+def get_charts_info(username): 
+    result = [] 
+    weights = get_weights(username)
+    stamps = get_stamps(username)
+    for index in range(len(stamps)):
+        result.append({stamps[index][0]:weights[index][0]})
+    return(result)

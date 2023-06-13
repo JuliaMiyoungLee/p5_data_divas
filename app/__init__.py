@@ -105,9 +105,9 @@ def profilePage():
     
     # fitness level is done
     
-    
-
-    return render_template("profile.html", user=user,lose = lose, gain = gain, maintain = maintain, sedentary=sedentary, lightlyactive=lightly_active, moderatelyactive=moderately_active,veryactive = very_active, extremelyactive = extremely_active, data=ref, male=male, fem=fem, weight=weight, height=height, age=age, goal=goal)
+    # render chart.js graph 
+    graph_dictionary = data_tables.get_charts_info(user)
+    return render_template("profile.html", user=user,lose = lose, gain = gain, maintain = maintain, sedentary=sedentary, lightlyactive=lightly_active, moderatelyactive=moderately_active,veryactive = very_active, extremelyactive = extremely_active, data=ref, male=male, fem=fem, weight=weight, height=height, age=age, goal=goal, graph_dictionary = graph_dictionary)
 
 @app.route("/updateProfile", methods=['GET', 'POST'])
 def updateProfile():
@@ -122,6 +122,8 @@ def updateProfile():
         user_bmr = algo_funcs.bmr(gender, int(height), int(weight),int(age))
         user_amr = algo_funcs.amr(fitness_level, user_bmr)
         cal = algo_funcs.calories(goal,user_amr)
+        today = dates.today().strftime('%m-%d-%Y')
+        data_tables.update_weight(session["username"], weight, today)
         data_tables.update_user_values(session["username"], session["password"],gender, goal,weight,height,age,fitness_level,calorie_goal=cal)
 
     return redirect("/profile")
@@ -228,8 +230,11 @@ def quiz_me():
         height = str(request.form["height"])
         age = str(request.form["age"])
         fit_lvl = request.form["fitness_level"]
+        user_bmr = algo_funcs.bmr(gender, int(height), int(weight),int(age))
+        user_amr = algo_funcs.amr(fit_lvl, user_bmr)
+        cal = algo_funcs.calories(goal,user_amr)
         today = dates.today().strftime("%m-%d-%Y")
-        data_tables.update_weight(username, weight, today)
+        data_tables.update_weight(username, weight, today, cal)
         data_tables.update_quiz(keys=["gender", "goal", "weight", "height", "age","fitness_level"], values=[gender, goal, weight, height, age, fit_lvl], username=username)
         return redirect(f'/dashboard/{today}')#, calorie=amr_value)
     
@@ -271,7 +276,8 @@ def delete_food():
     today = dates.today().strftime("%m-%d-%Y")
     foodId = request.form["id"]
     foodType = request.form["foodType"]
-    data_tables.delete_food(session["username"], foodId, foodType, today)
+    calories = request.form["cals"]
+    data_tables.delete_food(session["username"], foodId, foodType, calories, today)
     return redirect(f"/dashboard/{today}")
 
 @app.route("/deleteExercise", methods=["POST"])
@@ -290,6 +296,23 @@ def go_back(date):
 def go_forward(date):
     newDate = calendify.get_after(date)
     return redirect(f"/dashboard/{newDate}")
+
+@app.route("/updateWeight", methods=["POST"])
+def updateWeight():
+    user = session["username"]
+    weight = request.form["weight"]
+    today = dates.today().strftime("%m-%d-%Y")
+    user_info = data_tables.get_user(user)
+    gender = user_info[2]
+    height = user_info[5]
+    age = user_info[6]
+    fitness_level = user_info[7]
+    goal = user_info[3]
+    user_bmr = algo_funcs.bmr(gender, int(height), int(weight),int(age))
+    user_amr = algo_funcs.amr(fitness_level, user_bmr)
+    cal = algo_funcs.calories(goal,user_amr)
+    data_tables.update_weight(user, weight, today, cal)
+    return redirect(f"/dashboard/{today}")
 
 @app.route("/logout")
 def logout(): 

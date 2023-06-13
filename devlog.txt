@@ -80,4 +80,5 @@ Post-prom hangover even though I didn't drink?
 annaF -- 2023-06-12 21:44
 - pull weights and timestamps from database
 - rendering progress graph on profile 
+- remove all console logs/print statements 
 WHEN WILL THE MERGE CONFLICTS END FDSDFSD

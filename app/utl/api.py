@@ -39,9 +39,7 @@ def search(foodName):
 
 def search_exercise(exerciseName):
     query = exerciseName.capitalize()
-    print(query)
     query2 = exerciseName.lower()
-    print(query2)
     url = "https://raw.githubusercontent.com/annafang30/exercise_stats/main/exercise_stats.json" 
     data2 = requests.get(url)
     all = json.loads(data2.text)
@@ -59,7 +57,6 @@ def search_exercise(exerciseName):
         if query2 in names[index]:
             conversion = round(float(all[index]["Calories per kg"]) * 2.20462, 3)
             exercises.append({"exercise":all[index]["Activity, Exercise or Sport (1 hour)"],"calories":conversion})
-    print(exercises)
     return exercises 
     
     

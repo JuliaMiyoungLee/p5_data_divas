@@ -7,14 +7,12 @@ for(let i = 0; i < graph_dictionary.length; i++){
     const key = Object.keys(graph_dictionary[i])
     keys[i] = (key)
 }
-// console.log(keys.toString())
 
 // get the weights
 for(let i = 0; i < graph_dictionary.length; i++){
     current = graph_dictionary[i][keys[i]]
     weight[i] = current
 }
-// console.log(weight.toString())
 
 // set up graph functionality 
 var c = document.getElementById('myChart');

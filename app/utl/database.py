@@ -67,12 +67,12 @@ def update_quiz(keys, values, username):
     db.commit() 
     db.close()  
 
-def update_weight(username, weight, timestamp):
+def update_weight(username, weight, timestamp, calGoal):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
     query = f"INSERT INTO weights VALUES ('{username}', '{weight}', '{timestamp}')"
     c.execute(query)
-    query = f"UPDATE users SET weight = '{weight}' WHERE username = '{username}'"
+    query = f"UPDATE users SET weight = '{weight}', calorie_goal = {calGoal} WHERE username = '{username}'"
     c.execute(query)
     db.commit() 
     db.close()
@@ -237,10 +237,10 @@ def get_snack(username, date):
     return foods
 
 
-def delete_food(username, foodId, foodType, date):
+def delete_food(username, foodId, foodType, cals, date):
     db = sqlite3.connect("DB_FILE.db")
     c = db.cursor()
-    query = f"DELETE FROM foods WHERE username = '{username}' AND id = {foodId} AND foodType = '{foodType}' AND timestamp = '{date}'"
+    query = f"DELETE FROM foods WHERE username = '{username}' AND id = {foodId} AND foodType = '{foodType}' AND calories = {cals} AND timestamp = '{date}'"
     print(query)
     c.execute(query)
     db.commit() 

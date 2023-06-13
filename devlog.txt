@@ -76,3 +76,8 @@ juliaL -- 2023-06-11 9:05
 - display delete buttons only when current date matches displayed date
 - added exercise functionality
 Post-prom hangover even though I didn't drink?
+=================================================
+annaF -- 2023-06-12 21:44
+- pull weights and timestamps from database
+- rendering progress graph on profile 
+WHEN WILL THE MERGE CONFLICTS END FDSDFSD

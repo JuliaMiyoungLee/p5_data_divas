@@ -105,9 +105,9 @@ def profilePage():
     
     # fitness level is done
     
-    
-
-    return render_template("profile.html", user=user,lose = lose, gain = gain, maintain = maintain, sedentary=sedentary, lightlyactive=lightly_active, moderatelyactive=moderately_active,veryactive = very_active, extremelyactive = extremely_active, data=ref, male=male, fem=fem, weight=weight, height=height, age=age, goal=goal)
+    # render chart.js graph 
+    graph_dictionary = data_tables.get_charts_info(user)
+    return render_template("profile.html", user=user,lose = lose, gain = gain, maintain = maintain, sedentary=sedentary, lightlyactive=lightly_active, moderatelyactive=moderately_active,veryactive = very_active, extremelyactive = extremely_active, data=ref, male=male, fem=fem, weight=weight, height=height, age=age, goal=goal, graph_dictionary = graph_dictionary)
 
 @app.route("/updateProfile", methods=['GET', 'POST'])
 def updateProfile():

@@ -280,3 +280,36 @@ def delete_exercise(username, name, timestamp):
     c.execute(query)
     db.commit() 
     db.close()
+
+def get_weights(username):
+    weights = [] 
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = c.execute("SELECT weight FROM weights WHERE username = '" + username + "'")
+    results = query.fetchall()
+    for each in results:
+        weights.append(each)
+    db.commit() 
+    db.close() 
+    return weights
+
+def get_stamps(username): 
+    stamps = [] 
+    db = sqlite3.connect("DB_FILE.db")
+    c = db.cursor()
+    query = c.execute("SELECT timestamp FROM weights WHERE username = '" + username + "'")
+    results = query.fetchall()
+    for each in results:
+        stamps.append(each)
+    db.commit() 
+    db.close() 
+    return stamps
+
+def get_charts_info(username): 
+    result = [] 
+    weights = get_weights(username)
+    stamps = get_stamps(username)
+    for index in range(len(stamps)):
+        result.append({stamps[index][0]:weights[index][0]})
+    print(result)
+    return(result)

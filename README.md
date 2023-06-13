@@ -41,3 +41,4 @@ The Data Divas present to our most esteemed users, Truly Fit, our state-of-the-a
 
 # Demo Video:
 https://drive.google.com/file/d/1oUcA9StcHZ9rRTVj15dOfmpyvFXLr5bL/view?usp=drive_link
+https://youtu.be/NuB24c7tK-Q
